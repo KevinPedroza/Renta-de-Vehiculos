@@ -69,4 +69,6 @@ public class LoginUser {
             JOptionPane.showMessageDialog(null, "No estas Registrado, Por favor Registrese!");
         }
     }
+    
+   
 }

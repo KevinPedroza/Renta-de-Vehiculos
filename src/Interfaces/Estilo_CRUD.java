@@ -11,18 +11,18 @@ import Procedimientos.Instancias;
  *
  * @author Kevin
  */
-public class Marca_CRUD extends javax.swing.JDialog {
+public class Estilo_CRUD extends javax.swing.JDialog {
 
     /**
-     * Creates new form Marca_CRUD
+     * Creates new form Estilo_CRUD
      */
     Instancias instancias = new Instancias();
 
-    public Marca_CRUD(java.awt.Frame parent, boolean modal) {
+    public Estilo_CRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("CRUD Marcas");
+        this.setTitle("CRUD Estilos");
     }
 
     /**
@@ -43,9 +43,9 @@ public class Marca_CRUD extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jMenu1.setText("Mantenimiento Marcas");
+        jMenu1.setText("Mantenimiento Estilos");
 
-        jMenuItem1.setText("Agregar Marca / Leer Marca");
+        jMenuItem1.setText("Agregar Estilo / Leer Estilo");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -53,15 +53,10 @@ public class Marca_CRUD extends javax.swing.JDialog {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Modificar Marca");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
+        jMenuItem2.setText("Modificar Estilo");
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Eliminar Marca");
+        jMenuItem3.setText("Eliminar Estilo");
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
@@ -80,11 +75,11 @@ public class Marca_CRUD extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 311, Short.MAX_VALUE)
+            .addGap(0, 351, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
+            .addGap(0, 209, Short.MAX_VALUE)
         );
 
         pack();
@@ -92,18 +87,13 @@ public class Marca_CRUD extends javax.swing.JDialog {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         this.dispose();
-        instancias.Insertarmarca();
+        instancias.insertarEstilo();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         this.dispose();
         instancias.Login();
     }//GEN-LAST:event_jMenu2MouseClicked
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        this.dispose();
-        instancias.modificarMarca();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -122,20 +112,20 @@ public class Marca_CRUD extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Marca_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Estilo_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Marca_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Estilo_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Marca_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Estilo_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Marca_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Estilo_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Marca_CRUD dialog = new Marca_CRUD(new javax.swing.JFrame(), true);
+                Estilo_CRUD dialog = new Estilo_CRUD(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -155,5 +145,4 @@ public class Marca_CRUD extends javax.swing.JDialog {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     // End of variables declaration//GEN-END:variables
-
 }

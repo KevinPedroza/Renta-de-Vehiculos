@@ -6,12 +6,12 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mantenimiento Marcas"/>
+            <Property name="text" type="java.lang.String" value="Mantenimiento Estilos"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar Marca / Leer Marca"/>
+                <Property name="text" type="java.lang.String" value="Agregar Estilo / Leer Estilo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
@@ -19,15 +19,12 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Modificar Marca"/>
+                <Property name="text" type="java.lang.String" value="Modificar Estilo"/>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
-              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Eliminar Marca"/>
+                <Property name="text" type="java.lang.String" value="Eliminar Estilo"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -66,12 +63,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="311" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="351" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="188" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="209" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>

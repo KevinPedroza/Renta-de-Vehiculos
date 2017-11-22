@@ -19,6 +19,14 @@ public class Estilo {
         this.Estilo_vehiculo = Estilo_vehiculo;
     }
 
+    public void setCodigo_estilo(int Codigo_estilo) {
+        this.Codigo_estilo = Codigo_estilo;
+    }
+
+    public void setEstilo_vehiculo(String Estilo_vehiculo) {
+        this.Estilo_vehiculo = Estilo_vehiculo;
+    }
+
     public int getCodigo_estilo() {
         return Codigo_estilo;
     }

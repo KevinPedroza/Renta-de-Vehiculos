@@ -5,10 +5,13 @@
  */
 package Procedimientos;
 
+import Interfaces.Estilo_CRUD;
+import Interfaces.Insertar_estilo;
 import Interfaces.Insertar_marca;
 import Interfaces.Login;
 import Interfaces.Marca_CRUD;
 import Interfaces.MenúAdmi;
+import Interfaces.Modificar_marca;
 import javax.swing.JFrame;
 
 /**
@@ -39,6 +42,26 @@ public class Instancias extends JFrame {
         Insertar_marca marca = new Insertar_marca(this, true);
         marca.pack();
         marca.setVisible(true);
+        
+    }
+    
+    public void modificarMarca() {
+        Modificar_marca marca = new Modificar_marca(this, true);
+        marca.pack();
+        marca.setVisible(true);
+    }
+    
+    public void menuEstilos() {
+        Estilo_CRUD estilo = new Estilo_CRUD(this, true);
+        estilo.pack();
+        estilo.setVisible(true);
+        
+    }
+    
+    public void insertarEstilo() {
+        Insertar_estilo estilo = new Insertar_estilo(this, true);
+        estilo.pack();
+        estilo.setVisible(true);
         
     }
 }
