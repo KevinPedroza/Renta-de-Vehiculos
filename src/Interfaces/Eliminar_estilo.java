@@ -5,29 +5,27 @@
  */
 package Interfaces;
 
-import Procedimientos.CRUD_marca;
+import Procedimientos.CRUD_estilo;
 import Procedimientos.Instancias;
-import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
 
 /**
  *
  * @author Kevin
  */
-public class Eliminar_marca extends javax.swing.JDialog {
+public class Eliminar_estilo extends javax.swing.JDialog {
 
     /**
-     * Creates new form Eliminar_marca
+     * Creates new form Eliminar_estilo
      */
     Instancias instancias = new Instancias();
-    CRUD_marca marca = new CRUD_marca();
-    
-    public Eliminar_marca(java.awt.Frame parent, boolean modal) {
+    CRUD_estilo estilo = new CRUD_estilo();
+
+    public Eliminar_estilo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("Eliminar Marca");
-        marca.Cargar_tablaeliminar();
+        this.setTitle("Eliminar Estilo");
+        estilo.Cargar_tablaeliminar();
     }
 
     /**
@@ -40,32 +38,14 @@ public class Eliminar_marca extends javax.swing.JDialog {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Eliminar_marca = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Estilos_eliminar = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Sitka Text", 1, 18)); // NOI18N
-        jLabel1.setText("Seleccione un Código de marca para eliminar");
-
-        Eliminar_marca.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Código Marca", "Marca"
-            }
-        ));
-        Eliminar_marca.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Eliminar_marcaMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(Eliminar_marca);
+        jLabel1.setFont(new java.awt.Font("Sitka Text", 3, 18)); // NOI18N
+        jLabel1.setText("Seleccione un código de estilo para Eliminar");
 
         jButton1.setFont(new java.awt.Font("Sitka Text", 3, 12)); // NOI18N
         jButton1.setText("Atrás");
@@ -75,19 +55,38 @@ public class Eliminar_marca extends javax.swing.JDialog {
             }
         });
 
+        Estilos_eliminar.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Código Estilo", "Nombre Estilo"
+            }
+        ));
+        Estilos_eliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Estilos_eliminarMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(Estilos_eliminar);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(70, 70, 70))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,8 +96,8 @@ public class Eliminar_marca extends javax.swing.JDialog {
                     .addComponent(jLabel1)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -106,12 +105,12 @@ public class Eliminar_marca extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        instancias.MarcaCRUD();
+        instancias.menuEstilos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void Eliminar_marcaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Eliminar_marcaMouseClicked
-      marca.Eliminar_marca();
-    }//GEN-LAST:event_Eliminar_marcaMouseClicked
+    private void Estilos_eliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Estilos_eliminarMouseClicked
+        estilo.Eliminar_estilo();
+    }//GEN-LAST:event_Estilos_eliminarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -130,20 +129,20 @@ public class Eliminar_marca extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Eliminar_marca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Eliminar_estilo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Eliminar_marca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Eliminar_estilo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Eliminar_marca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Eliminar_estilo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Eliminar_marca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Eliminar_estilo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Eliminar_marca dialog = new Eliminar_marca(new javax.swing.JFrame(), true);
+                Eliminar_estilo dialog = new Eliminar_estilo(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -156,7 +155,7 @@ public class Eliminar_marca extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JTable Eliminar_marca;
+    public static javax.swing.JTable Estilos_eliminar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

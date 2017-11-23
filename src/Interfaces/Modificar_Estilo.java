@@ -5,8 +5,11 @@
  */
 package Interfaces;
 
-import Herencia.Marca;
-import Procedimientos.CRUD_marca;
+import Herencia.Estilo;
+import static Interfaces.Modificar_marca.Marca_codigo_modificar;
+import static Interfaces.Modificar_marca.Marca_modificar;
+import static Interfaces.Modificar_marca.Nombre_marca_modificar;
+import Procedimientos.CRUD_estilo;
 import Procedimientos.Instancias;
 import javax.swing.JOptionPane;
 
@@ -14,20 +17,20 @@ import javax.swing.JOptionPane;
  *
  * @author Kevin
  */
-public class Modificar_marca extends javax.swing.JDialog {
+public class Modificar_Estilo extends javax.swing.JDialog {
 
     /**
-     * Creates new form Modificar_marca
+     * Creates new form Modificar_Estilo
      */
     Instancias instancias = new Instancias();
-    CRUD_marca marca = new CRUD_marca();
+    CRUD_estilo estilo = new CRUD_estilo();
 
-    public Modificar_marca(java.awt.Frame parent, boolean modal) {
+    public Modificar_Estilo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("Modificar Marca");
-        marca.Llenarlista_modificar();
+        this.setTitle("Modificar Estilos");
+        estilo.Llenarlista_modificar();
     }
 
     /**
@@ -39,33 +42,17 @@ public class Modificar_marca extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Marca_modificar = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        Marca_codigo_modificar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        Nombre_marca_modificar = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Codigo_Estilo = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Modificar_estilo = new javax.swing.JList<>();
+        Nombre_estilo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        Marca_modificar.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                Marca_modificarValueChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(Marca_modificar);
-
-        jLabel1.setFont(new java.awt.Font("Sitka Text", 1, 24)); // NOI18N
-        jLabel1.setText("Seleccione una Marca");
-
-        jLabel2.setFont(new java.awt.Font("Sitka Text", 1, 12)); // NOI18N
-        jLabel2.setText("Código Marca");
-
-        jLabel3.setFont(new java.awt.Font("Sitka Text", 1, 12)); // NOI18N
-        jLabel3.setText("Nombre Marca");
 
         jButton1.setFont(new java.awt.Font("Sitka Text", 3, 12)); // NOI18N
         jButton1.setText("Atrás");
@@ -75,42 +62,58 @@ public class Modificar_marca extends javax.swing.JDialog {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Sitka Text", 3, 24)); // NOI18N
+        jLabel1.setText("Seleccione un Estilo");
+
+        jLabel2.setFont(new java.awt.Font("Sitka Text", 3, 12)); // NOI18N
+        jLabel2.setText("Código Estilo");
+
+        jLabel3.setFont(new java.awt.Font("Sitka Text", 3, 12)); // NOI18N
+        jLabel3.setText("Nombre Estilo");
+
         jButton2.setFont(new java.awt.Font("Sitka Text", 3, 12)); // NOI18N
-        jButton2.setText("Modificar Marca");
+        jButton2.setText("Modificar Estilo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        Modificar_estilo.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                Modificar_estiloValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(Modificar_estilo);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(105, 105, 105))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(55, 55, 55)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Marca_codigo_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Nombre_marca_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(98, 98, 98))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Codigo_Estilo)
+                            .addComponent(Nombre_estilo, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1))
+                        .addGap(103, 103, 103)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(54, Short.MAX_VALUE))
+                        .addGap(64, 64, 64)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,22 +122,21 @@ public class Modificar_marca extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                        .addGap(37, 37, 37))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(Marca_codigo_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                    .addComponent(Codigo_Estilo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Nombre_marca_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(29, 29, 29)
+                    .addComponent(jLabel3)
+                    .addComponent(Nombre_estilo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,21 +144,22 @@ public class Modificar_marca extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        instancias.MarcaCRUD();
+        instancias.menuEstilos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void Marca_modificarValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_Marca_modificarValueChanged
-        marca.cargarDatosListaModificar();
-    }//GEN-LAST:event_Marca_modificarValueChanged
+    private void Modificar_estiloValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_Modificar_estiloValueChanged
+        estilo.cargarDatosListaModificar();
+    }//GEN-LAST:event_Modificar_estiloValueChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (Marca_modificar.isSelectionEmpty()) {
-            JOptionPane.showMessageDialog(null, "Seleccione una Marca!");
-        } else if (Marca_codigo_modificar.getText().equals("") || Nombre_marca_modificar.getText().equals("")) {
+        if (Modificar_estilo.isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Seleccione un Estilo!");
+        } else if (Codigo_Estilo.getText().equals("") || Nombre_estilo.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Llene los campos Completamente!");
         } else {
-            marca.Modificar_marca();
+            estilo.Modificar_estilo();
         }
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -176,20 +179,20 @@ public class Modificar_marca extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Modificar_marca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificar_Estilo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Modificar_marca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificar_Estilo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Modificar_marca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificar_Estilo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Modificar_marca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modificar_Estilo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Modificar_marca dialog = new Modificar_marca(new javax.swing.JFrame(), true);
+                Modificar_Estilo dialog = new Modificar_Estilo(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -202,14 +205,14 @@ public class Modificar_marca extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JTextField Marca_codigo_modificar;
-    public static javax.swing.JList<Marca> Marca_modificar;
-    public static javax.swing.JTextField Nombre_marca_modificar;
+    public static javax.swing.JTextField Codigo_Estilo;
+    public static javax.swing.JList<Estilo> Modificar_estilo;
+    public static javax.swing.JTextField Nombre_estilo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

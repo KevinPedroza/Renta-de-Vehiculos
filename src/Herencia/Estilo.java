@@ -35,4 +35,9 @@ public class Estilo {
         return Estilo_vehiculo;
     }
 
+    @Override
+    public String toString() {
+        return this.Estilo_vehiculo;
+
+    }
 }

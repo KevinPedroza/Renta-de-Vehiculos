@@ -28,33 +28,33 @@ import javax.swing.table.TableModel;
  * @author Kevin
  */
 public class CRUD_marca {
-
+    
     private Connection connection = null;
     private ResultSet rs = null;
     private Statement s = null;
-
+    
     Instancias instancias = new Instancias();
     private DefaultListModel<Marca> modelo;
-
+    
     public void Conexion_Base_datos() {
         if (connection != null) {
             return;
         }
-
+        
         try {
             Class.forName("org.postgresql.Driver");
-
+            
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/renta_de_vehiculos", "postgres", "kevin");
             if (connection != null) {
-
+                
             }
         } catch (Exception e) {
             System.out.println("Problem when connecting to the database");
         }
     }
-
+    
     public void Registrarmarca() {
-
+        
         Conexion_Base_datos();
         try {
             String Idmarca = Codigo_marca.getText();
@@ -71,122 +71,122 @@ public class CRUD_marca {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al insertar la Marca");
         }
-
+        
     }
-
+    
     public void Mostrarmarcas() {
-
+        
         ArrayList<String> id_marca = null;
         ArrayList<String> marca = null;
-
+        
         Conexion_Base_datos();
         try {
             id_marca = new <String>ArrayList();
             marca = new <String>ArrayList();
-
+            
             s = connection.createStatement();
             rs = s.executeQuery("SELECT id_marca, nombre FROM marca ORDER BY nombre ASC");
-
+            
             while (rs.next()) {
                 id_marca.add(rs.getString("id_marca"));
                 marca.add(rs.getString("nombre"));
-
+                
             }
         } catch (Exception e) {
             System.out.println("Error de conexión" + e);
         }
-
+        
         for (int i = 0; i < id_marca.size(); i++) {
             Marcas_registradas.setValueAt(id_marca.get(i), i, 0);
             Marcas_registradas.setValueAt(marca.get(i), i, 1);
-
+            
             if (id_marca.size() >= Marcas_registradas.getRowCount()) {
                 DefaultTableModel temp2 = (DefaultTableModel) Marcas_registradas.getModel();
                 Object nuevo[] = {temp2.getRowCount()};
                 temp2.addRow(nuevo);
             }
-
+            
         }
         if (Marcas_registradas.getRowCount() > id_marca.size()) {
-
+            
             try {
                 DefaultTableModel temp2 = (DefaultTableModel) Marcas_registradas.getModel();
                 Marcas_registradas.getModel();
                 temp2.removeRow(temp2.getRowCount() - 1);
-
+                
             } catch (ArrayIndexOutOfBoundsException e) {
             }
         }
     }
-
+    
     public void Cargar_tablaeliminar() {
-
+        
         ArrayList<String> id_marca = null;
         ArrayList<String> marca = null;
         Conexion_Base_datos();
-
+        
         try {
             id_marca = new <String>ArrayList();
             marca = new <String>ArrayList();
-
+            
             s = connection.createStatement();
             rs = s.executeQuery("SELECT id_marca, nombre FROM marca ORDER BY nombre ASC");
-
+            
             while (rs.next()) {
                 id_marca.add(rs.getString("id_marca"));
                 marca.add(rs.getString("nombre"));
-
+                
             }
         } catch (Exception e) {
             System.out.println("Error de conexión" + e);
         }
-
+        
         for (int i = 0; i < id_marca.size(); i++) {
             Eliminar_marca.setValueAt(id_marca.get(i), i, 0);
             Eliminar_marca.setValueAt(marca.get(i), i, 1);
-
+            
             if (id_marca.size() >= Eliminar_marca.getRowCount()) {
                 DefaultTableModel temp2 = (DefaultTableModel) Eliminar_marca.getModel();
                 Object nuevo[] = {temp2.getRowCount()};
                 temp2.addRow(nuevo);
             }
-
+            
         }
         if (Eliminar_marca.getRowCount() > id_marca.size()) {
-
+            
             try {
                 DefaultTableModel temp2 = (DefaultTableModel) Eliminar_marca.getModel();
                 Eliminar_marca.getModel();
                 temp2.removeRow(temp2.getRowCount() - 1);
-
+                
             } catch (ArrayIndexOutOfBoundsException e) {
             }
         }
-
+        
     }
-
+    
     public void Eliminar_marca() {
-
+        
         TableModel tablaModelo;
         tablaModelo = (TableModel) Eliminar_marca.getModel();
         boolean avanzar = true;
         int registro = Eliminar_marca.getSelectedRow();
         int columna = Eliminar_marca.getSelectedColumn();
-
+        
         if (registro == -1) {
-
+            
             avanzar = false;
         } else if (columna == -1) {
             avanzar = false;
         }
-
+        
         if (avanzar) {
             String strResultado = tablaModelo.getValueAt(Eliminar_marca.getSelectedRow(), 0).toString();
             int opcion = JOptionPane.showConfirmDialog(null, "Desea Elmininar : " + strResultado);
             if (opcion == 0) {
                 Conexion_Base_datos();
                 try {
-
+                    
                     s = connection.createStatement();
                     int z = s.executeUpdate("DELETE FROM marca WHERE id_marca = '" + strResultado + "'");
                     if (z == 1) {
@@ -199,78 +199,79 @@ public class CRUD_marca {
                     System.out.println("Error de conexión");
                 }
             }
-
+            
         } else {
             JOptionPane.showMessageDialog(null, "No se ha seleccionado un registro");
-
+            
         }
-
+        
     }
-
+    
     public ArrayList<Marca> obtenermarca() {
         ArrayList<Marca> listamarca = new ArrayList();
-
+        
         Conexion_Base_datos();
         try {
-
+            
             s = connection.createStatement();
             rs = s.executeQuery("SELECT * FROM marca");
-
+            
             while (rs.next()) {
                 String id = rs.getString("id_marca");
                 String nombre = rs.getString("nombre");
                 Marca marca = new Marca(Integer.parseInt(id), nombre);
-
+                
                 listamarca.add(marca);
-
+                
             }
         } catch (Exception e) {
             System.out.println("Error de conexión");
         }
-
+        
         return listamarca;
     }
-
+    
     public void Llenarlista_modificar() {
         modelo = new DefaultListModel<Marca>();
         ArrayList<Marca> listamarca = new ArrayList();
         listamarca = obtenermarca();
-
+        
         for (Marca marca : listamarca) {
             modelo.addElement(marca);
         }
         Marca_modificar.setModel(modelo);
-
+        
     }
-
+    
     public void cargarDatosListaModificar() {
         Marca marca = Marca_modificar.getSelectedValue();
         Conexion_Base_datos();
         try {
-
+            
             s = connection.createStatement();
             rs = s.executeQuery("SELECT * FROM marca WHERE id_marca = '" + marca.getCodigo_marca() + "'");
-
+            
             while (rs.next()) {
                 Marca_codigo_modificar.setText(rs.getString("id_marca"));
                 Nombre_marca_modificar.setText(rs.getString("nombre"));
-
+                
+                
             }
         } catch (Exception e) {
             
         }
-
+        
     }
-
+    
     public void Modificar_marca() {
         Marca marca = Marca_modificar.getSelectedValue();
-
+        
         Conexion_Base_datos();
-
+        
         try {
             String nombre = Nombre_marca_modificar.getText();
             String Codigo = Marca_codigo_modificar.getText();
-
+            
             s = connection.createStatement();
             int z = s.executeUpdate("UPDATE marca SET id_marca = '" + Codigo + "', nombre = '" + nombre + "' WHERE id_marca = '" + marca.getCodigo_marca() + "'");
             if (z == 1) {
@@ -278,14 +279,14 @@ public class CRUD_marca {
                 Nombre_marca_modificar.setText("");
                 Marca_codigo_modificar.setText("");
                 Llenarlista_modificar();
-
+                
             } else {
-                JOptionPane.showMessageDialog(null, "Error al modificar el registro");
+                JOptionPane.showMessageDialog(null, "Error al modificar la Marca");
             }
         } catch (Exception e) {
             System.out.println("Error de conexión");
         }
-
+        
     }
-
+    
 }
