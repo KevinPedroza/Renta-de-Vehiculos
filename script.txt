@@ -1,0 +1,148 @@
+CREATE DATABASE renta_de_vehiculos
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Spanish_Spain.1252'
+    LC_CTYPE = 'Spanish_Spain.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+-- Tabla alquiler
+CREATE TABLE public.alquiler
+(
+    placa character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    cedula character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    nombre_usuario character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    oficina_retiro character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    oficina_devolucion character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    fecha_hora_retiro date NOT NULL,
+    fecha_hora_devolucion date NOT NULL,
+    precio double precision NOT NULL
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.alquiler
+    OWNER to postgres;
+
+
+--Tabla estilo
+CREATE TABLE public.estilo
+(
+    id_estilo integer NOT NULL,
+    nombre character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT estilo_pkey PRIMARY KEY (id_estilo)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.estilo
+    OWNER to postgres;
+
+
+--Tabla marcas
+CREATE TABLE public.marcas
+(
+    id_marca integer NOT NULL,
+    nombre character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT marcas_pkey PRIMARY KEY (id_marca)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.marcas
+    OWNER to postgres;
+
+
+-- Tabla modelo
+CREATE TABLE public.modelo
+(
+    id_modelo integer NOT NULL,
+    nombre character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT modelo_pkey PRIMARY KEY (id_modelo)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.modelo
+    OWNER to postgres;
+
+
+-- Tabla oficina
+CREATE TABLE public.oficina
+(
+    id_oficina integer NOT NULL,
+    nombre character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT oficina_pkey PRIMARY KEY (id_oficina)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.oficina
+    OWNER to postgres;
+
+
+-- Tabla usuario
+CREATE TABLE public.usuario
+(
+    cedula character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    nombre character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    telefono character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    direccion character varying(150) COLLATE pg_catalog."default",
+    foto bytea,
+    contrasena character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    tipo "char" NOT NULL,
+    CONSTRAINT usuario_pkey PRIMARY KEY (cedula)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.usuario
+    OWNER to postgres;
+
+
+--Tabla vehiculo
+CREATE TABLE public.vehiculo
+(
+    placa character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    id_marca integer NOT NULL,
+    id_modelo integer NOT NULL,
+    id_estilo integer NOT NULL,
+    transmision character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    ano character varying(10) COLLATE pg_catalog."default" NOT NULL,
+    precio double precision NOT NULL,
+    foto bytea NOT NULL,
+    estado character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT vehiculo_pkey PRIMARY KEY (placa),
+    CONSTRAINT fk_vehiculo_estilo FOREIGN KEY (id_estilo)
+        REFERENCES public.estilo (id_estilo) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_vehiculo_marcas FOREIGN KEY (id_marca)
+        REFERENCES public.marcas (id_marca) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_vehiculo_modelo FOREIGN KEY (id_modelo)
+        REFERENCES public.modelo (id_modelo) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.vehiculo
+    OWNER to postgres;
