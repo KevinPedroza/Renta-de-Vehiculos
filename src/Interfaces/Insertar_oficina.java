@@ -5,7 +5,7 @@
  */
 package Interfaces;
 
-import Procedimientos.CRUD_modelo;
+import Procedimientos.CRUD_oficina;
 import Procedimientos.Instancias;
 import javax.swing.JOptionPane;
 
@@ -13,20 +13,20 @@ import javax.swing.JOptionPane;
  *
  * @author Kevin
  */
-public class Insertar_modelo extends javax.swing.JDialog {
+public class Insertar_oficina extends javax.swing.JDialog {
 
     /**
-     * Creates new form Insertar_modelo
+     * Creates new form Insertar_oficina
      */
     Instancias instancias = new Instancias();
-    CRUD_modelo modelo = new CRUD_modelo();
+    CRUD_oficina oficina = new CRUD_oficina();
 
-    public Insertar_modelo(java.awt.Frame parent, boolean modal) {
+    public Insertar_oficina(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("Insertar Modelo / Leer Modelo");
-        modelo.Mostrarmodelos();
+        this.setTitle("Ingresar una Oficina / Leer una Oficina");
+        oficina.Mostraroficina();
     }
 
     /**
@@ -38,24 +38,27 @@ public class Insertar_modelo extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Nombre_modelo = new javax.swing.JTextField();
-        Codigo_modelo = new javax.swing.JTextField();
+        Nombre_oficina = new javax.swing.JTextField();
+        Codigo_oficina = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        Modelos_registrados = new javax.swing.JTable();
+        Oficina_registradas = new javax.swing.JTable();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Sitka Text", 3, 24)); // NOI18N
-        jLabel1.setText("Ingrese el Modelo deseado");
+        jLabel1.setText("Ingresar una Oficina");
 
-        jButton1.setFont(new java.awt.Font("Sitka Text", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jButton1.setText("Atrás");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,13 +67,13 @@ public class Insertar_modelo extends javax.swing.JDialog {
         });
 
         jLabel2.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
-        jLabel2.setText("Nombre Modelo");
+        jLabel2.setText("Nombre Oficina");
 
         jLabel3.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
-        jLabel3.setText("Código Modelo");
+        jLabel3.setText("Código Oficina");
 
         jButton2.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
-        jButton2.setText("Ingresar Estilo");
+        jButton2.setText("Ingresar la Oficina");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -78,9 +81,9 @@ public class Insertar_modelo extends javax.swing.JDialog {
         });
 
         jLabel4.setFont(new java.awt.Font("Sitka Text", 3, 24)); // NOI18N
-        jLabel4.setText("Modelos Registrados");
+        jLabel4.setText("Oficinas Registradas");
 
-        Modelos_registrados.setModel(new javax.swing.table.DefaultTableModel(
+        Oficina_registradas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -88,44 +91,44 @@ public class Insertar_modelo extends javax.swing.JDialog {
                 {null, null}
             },
             new String [] {
-                "Nombre Modelo", "Código Modelo"
+                "Código Oficina", "Nombre Oficina"
             }
         ));
-        jScrollPane1.setViewportView(Modelos_registrados);
+        jScrollPane1.setViewportView(Oficina_registradas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(jLabel1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Nombre_modelo, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                            .addComponent(Codigo_modelo))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 71, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
             .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addGap(183, 183, 183))
+                .addGap(192, 192, 192))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(195, 195, 195)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Nombre_oficina, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(Codigo_oficina))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(72, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
         );
@@ -134,25 +137,25 @@ public class Insertar_modelo extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(Nombre_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73)
+                    .addComponent(Nombre_oficina, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(Codigo_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                    .addComponent(Codigo_oficina, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,15 +163,15 @@ public class Insertar_modelo extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
-        instancias.menuModelo();
+        instancias.menuOficina();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (Nombre_modelo.getText().equals("") || Codigo_modelo.getText().equals("")) {
+        if (Nombre_oficina.getText().equals("") || Codigo_oficina.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Llene todos los campos Completamente!");
         } else {
-            modelo.Registramodelo();
-            modelo.Mostrarmodelos();
+            oficina.Registraoficina();
+            oficina.Mostraroficina();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -189,20 +192,20 @@ public class Insertar_modelo extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Insertar_modelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Insertar_oficina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Insertar_modelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Insertar_oficina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Insertar_modelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Insertar_oficina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Insertar_modelo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Insertar_oficina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Insertar_modelo dialog = new Insertar_modelo(new javax.swing.JFrame(), true);
+                Insertar_oficina dialog = new Insertar_oficina(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -215,9 +218,9 @@ public class Insertar_modelo extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JTextField Codigo_modelo;
-    public static javax.swing.JTable Modelos_registrados;
-    public static javax.swing.JTextField Nombre_modelo;
+    public static javax.swing.JTextField Codigo_oficina;
+    public static javax.swing.JTextField Nombre_oficina;
+    public static javax.swing.JTable Oficina_registradas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -226,5 +229,6 @@ public class Insertar_modelo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

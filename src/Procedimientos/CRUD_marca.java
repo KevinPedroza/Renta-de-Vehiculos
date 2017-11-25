@@ -62,14 +62,16 @@ public class CRUD_marca {
             int parseo = Integer.parseInt(Idmarca);
             Marca marca2 = new Marca(parseo, marca);
             s = connection.createStatement();
-            int z = s.executeUpdate("INSERT INTO marca (id_marca, nombre) VALUES ('" + marca2.getCodigo_marca() + "', '" + marca2.getMarca_vehiculo() + "')");
+            int z = s.executeUpdate("INSERT INTO marcas (id_marca, nombre) VALUES ('" + marca2.getCodigo_marca() + "', '" + marca2.getMarca_vehiculo() + "')");
             if (z == 1) {
                 JOptionPane.showMessageDialog(null, "Se agregó la Marca de manera exitosa");
+                Codigo_marca.setText("");
+                Nombre_marca.setText("");
             } else {
                 JOptionPane.showMessageDialog(null, "Error al insertar el Código, Ingrese Números en el Codigo!");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al insertar la Marca");
+            JOptionPane.showMessageDialog(null, "Error al insertar la Marca, ya existe ese código");
         }
         
     }
@@ -85,7 +87,7 @@ public class CRUD_marca {
             marca = new <String>ArrayList();
             
             s = connection.createStatement();
-            rs = s.executeQuery("SELECT id_marca, nombre FROM marca ORDER BY nombre ASC");
+            rs = s.executeQuery("SELECT id_marca, nombre FROM marcas ORDER BY nombre ASC");
             
             while (rs.next()) {
                 id_marca.add(rs.getString("id_marca"));
@@ -130,7 +132,7 @@ public class CRUD_marca {
             marca = new <String>ArrayList();
             
             s = connection.createStatement();
-            rs = s.executeQuery("SELECT id_marca, nombre FROM marca ORDER BY nombre ASC");
+            rs = s.executeQuery("SELECT id_marca, nombre FROM marcas ORDER BY nombre ASC");
             
             while (rs.next()) {
                 id_marca.add(rs.getString("id_marca"));
@@ -181,23 +183,26 @@ public class CRUD_marca {
         }
         
         if (avanzar) {
-            String strResultado = tablaModelo.getValueAt(Eliminar_marca.getSelectedRow(), 0).toString();
-            int opcion = JOptionPane.showConfirmDialog(null, "Desea Elmininar : " + strResultado);
-            if (opcion == 0) {
-                Conexion_Base_datos();
-                try {
-                    
-                    s = connection.createStatement();
-                    int z = s.executeUpdate("DELETE FROM marca WHERE id_marca = '" + strResultado + "'");
-                    if (z == 1) {
-                        JOptionPane.showMessageDialog(null, "Se eliminó el registro de manera exitosa");
-                        Cargar_tablaeliminar();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error al eliminar el registro");
+            try {
+                String strResultado = tablaModelo.getValueAt(Eliminar_marca.getSelectedRow(), 0).toString();
+                int opcion = JOptionPane.showConfirmDialog(null, "Desea Elmininar : " + strResultado);
+                if (opcion == 0) {
+                    Conexion_Base_datos();
+                    try {
+                        
+                        s = connection.createStatement();
+                        int z = s.executeUpdate("DELETE FROM marcas WHERE id_marca = '" + strResultado + "'");
+                        if (z == 1) {
+                            JOptionPane.showMessageDialog(null, "Se eliminó el registro de manera exitosa");
+                            Cargar_tablaeliminar();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error al eliminar el registro");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Error de conexión");
                     }
-                } catch (Exception e) {
-                    System.out.println("Error de conexión");
                 }
+            } catch (java.lang.NullPointerException e) {
             }
             
         } else {
@@ -214,7 +219,7 @@ public class CRUD_marca {
         try {
             
             s = connection.createStatement();
-            rs = s.executeQuery("SELECT * FROM marca");
+            rs = s.executeQuery("SELECT * FROM marcas");
             
             while (rs.next()) {
                 String id = rs.getString("id_marca");
@@ -249,12 +254,11 @@ public class CRUD_marca {
         try {
             
             s = connection.createStatement();
-            rs = s.executeQuery("SELECT * FROM marca WHERE id_marca = '" + marca.getCodigo_marca() + "'");
+            rs = s.executeQuery("SELECT * FROM marcas WHERE id_marca = '" + marca.getCodigo_marca() + "'");
             
             while (rs.next()) {
                 Marca_codigo_modificar.setText(rs.getString("id_marca"));
                 Nombre_marca_modificar.setText(rs.getString("nombre"));
-                
                 
             }
         } catch (Exception e) {
@@ -273,7 +277,7 @@ public class CRUD_marca {
             String Codigo = Marca_codigo_modificar.getText();
             
             s = connection.createStatement();
-            int z = s.executeUpdate("UPDATE marca SET id_marca = '" + Codigo + "', nombre = '" + nombre + "' WHERE id_marca = '" + marca.getCodigo_marca() + "'");
+            int z = s.executeUpdate("UPDATE marcas SET id_marca = '" + Codigo + "', nombre = '" + nombre + "' WHERE id_marca = '" + marca.getCodigo_marca() + "'");
             if (z == 1) {
                 JOptionPane.showMessageDialog(null, "Se módificó la Marca de manera exitosa");
                 Nombre_marca_modificar.setText("");

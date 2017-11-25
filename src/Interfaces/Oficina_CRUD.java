@@ -5,24 +5,26 @@
  */
 package Interfaces;
 
+import Procedimientos.CRUD_oficina;
 import Procedimientos.Instancias;
 
 /**
  *
  * @author Kevin
  */
-public class Estilo_CRUD extends javax.swing.JDialog {
+public class Oficina_CRUD extends javax.swing.JDialog {
 
     /**
-     * Creates new form Estilo_CRUD
+     * Creates new form Oficina_CRUD
      */
     Instancias instancias = new Instancias();
+    CRUD_oficina oficina = new CRUD_oficina();
 
-    public Estilo_CRUD(java.awt.Frame parent, boolean modal) {
+    public Oficina_CRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("CRUD Estilos");
+        this.setTitle("CRUD Oficina");
     }
 
     /**
@@ -44,9 +46,9 @@ public class Estilo_CRUD extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jMenu1.setText("Mantenimiento Estilos");
+        jMenu1.setText("Mantenimiento Oficina");
 
-        jMenuItem1.setText("Agregar Estilo / Leer Estilo");
+        jMenuItem1.setText("Ingresar Oficina / Leer Oficina");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -54,15 +56,10 @@ public class Estilo_CRUD extends javax.swing.JDialog {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Modificar Estilo");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
+        jMenuItem2.setText("Modificar Oficina");
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Eliminar Estilo");
+        jMenuItem3.setText("Eliminar Oficina");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -94,40 +91,35 @@ public class Estilo_CRUD extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 209, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         this.dispose();
-        instancias.insertarEstilo();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        instancias.MenuCRUD();
+    }//GEN-LAST:event_jMenu3MouseClicked
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         this.dispose();
         instancias.Login();
     }//GEN-LAST:event_jMenu2MouseClicked
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        this.dispose();
+        instancias.insertarOficina();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         this.dispose();
-        instancias.eliminarEstilo();
+        instancias.eliminarOficina();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        this.dispose();
-        instancias.modificarEstilo();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
-        this.dispose();
-        instancias.MenuCRUD();
-    }//GEN-LAST:event_jMenu3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -146,20 +138,20 @@ public class Estilo_CRUD extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Estilo_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Oficina_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Estilo_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Oficina_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Estilo_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Oficina_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Estilo_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Oficina_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Estilo_CRUD dialog = new Estilo_CRUD(new javax.swing.JFrame(), true);
+                Oficina_CRUD dialog = new Oficina_CRUD(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -6,10 +6,13 @@
 package Procedimientos;
 
 import Interfaces.Eliminar_estilo;
+import Interfaces.Eliminar_modelo;
+import Interfaces.Eliminar_oficina;
 import Interfaces.Estilo_CRUD;
 import Interfaces.Insertar_estilo;
 import Interfaces.Insertar_marca;
 import Interfaces.Insertar_modelo;
+import Interfaces.Insertar_oficina;
 import Interfaces.Login;
 import Interfaces.Marca_CRUD;
 import Interfaces.MenúAdmi;
@@ -17,6 +20,8 @@ import Interfaces.Modelo_CRUD;
 import Interfaces.Modificar_Estilo;
 import static Interfaces.Modificar_Estilo.Modificar_estilo;
 import Interfaces.Modificar_marca;
+import Interfaces.Modificar_modelo;
+import Interfaces.Oficina_CRUD;
 import javax.swing.JFrame;
 
 /**
@@ -89,10 +94,42 @@ public class Instancias extends JFrame {
         menu.pack();
         menu.setVisible(true);
     }
-
+    
     public void insertarModelo() {
         Insertar_modelo modelo = new Insertar_modelo(this, true);
         modelo.pack();
         modelo.setVisible(true);
+    }
+    
+    public void eliminarModelo() {
+        Eliminar_modelo modelo = new Eliminar_modelo(this, true);
+        modelo.pack();
+        modelo.setVisible(true);
+        
+    }
+    
+    public void modificarModelo() {
+        Modificar_modelo modelo = new Modificar_modelo(this, true);
+        modelo.pack();
+        modelo.setVisible(true);
+    }
+    
+    public void menuOficina() {
+        Oficina_CRUD oficina = new Oficina_CRUD(this, true);
+        oficina.pack();
+        oficina.setVisible(true);
+        
+    }
+    
+    public void insertarOficina() {
+        Insertar_oficina oficina = new Insertar_oficina(this, true);
+        oficina.pack();
+        oficina.setVisible(true);
+    }
+    
+    public void eliminarOficina() {
+        Eliminar_oficina oficina = new Eliminar_oficina(this, true);
+        oficina.pack();
+        oficina.setVisible(true);
     }
 }

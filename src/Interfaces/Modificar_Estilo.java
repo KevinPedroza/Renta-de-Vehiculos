@@ -50,7 +50,7 @@ public class Modificar_Estilo extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         Modificar_estilo = new javax.swing.JList<>();
-        Nombre_estilo = new javax.swing.JTextField();
+        Nombre_estilo2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -106,7 +106,7 @@ public class Modificar_Estilo extends javax.swing.JDialog {
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Codigo_Estilo)
-                            .addComponent(Nombre_estilo, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
+                            .addComponent(Nombre_estilo2, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(103, 103, 103)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -133,7 +133,7 @@ public class Modificar_Estilo extends javax.swing.JDialog {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(Nombre_estilo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Nombre_estilo2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(44, Short.MAX_VALUE))
@@ -154,7 +154,7 @@ public class Modificar_Estilo extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (Modificar_estilo.isSelectionEmpty()) {
             JOptionPane.showMessageDialog(null, "Seleccione un Estilo!");
-        } else if (Codigo_Estilo.getText().equals("") || Nombre_estilo.getText().equals("")) {
+        } else if (Codigo_Estilo.getText().equals("") || Nombre_estilo2.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Llene los campos Completamente!");
         } else {
             estilo.Modificar_estilo();
@@ -207,7 +207,7 @@ public class Modificar_Estilo extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField Codigo_Estilo;
     public static javax.swing.JList<Estilo> Modificar_estilo;
-    public static javax.swing.JTextField Nombre_estilo;
+    public static javax.swing.JTextField Nombre_estilo2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

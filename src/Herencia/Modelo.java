@@ -6,6 +6,14 @@ package Herencia;
  */
 public class Modelo {
 
+    public void setCodigo_modelo(int Codigo_modelo) {
+        this.Codigo_modelo = Codigo_modelo;
+    }
+
+    public void setModelo_vehiculo(String Modelo_vehiculo) {
+        this.Modelo_vehiculo = Modelo_vehiculo;
+    }
+
     int Codigo_modelo;
     String Modelo_vehiculo;
 
@@ -20,6 +28,12 @@ public class Modelo {
 
     public String getModelo_vehiculo() {
         return Modelo_vehiculo;
+    }
+
+    @Override
+    public String toString() {
+        return this.Modelo_vehiculo;
+
     }
 
 }
