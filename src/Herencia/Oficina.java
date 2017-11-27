@@ -34,4 +34,11 @@ public class Oficina {
         this.id_oficina = id_oficina;
         this.Nombre_oficina = Nombre_oficina;
     }
+
+    @Override
+    public String toString() {
+        return this.Nombre_oficina;
+
+    }
+
 }

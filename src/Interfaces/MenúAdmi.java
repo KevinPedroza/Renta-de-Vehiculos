@@ -50,6 +50,11 @@ public class MenúAdmi extends javax.swing.JDialog {
 
         jButton1.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jButton1.setText("CRUD Vehiculos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jButton2.setText("CRUD Marcas");
@@ -77,6 +82,11 @@ public class MenúAdmi extends javax.swing.JDialog {
 
         jButton5.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jButton5.setText("CRUD Oficina");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jButton6.setText("Reportes");
@@ -145,6 +155,16 @@ public class MenúAdmi extends javax.swing.JDialog {
         this.dispose();
         instancias.menuModelo();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        instancias.menuVehiculos();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        this.dispose();
+        instancias.menuOficina();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments

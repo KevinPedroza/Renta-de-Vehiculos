@@ -5,26 +5,24 @@
  */
 package Interfaces;
 
-import Procedimientos.CRUD_oficina;
 import Procedimientos.Instancias;
 
 /**
  *
  * @author Kevin
  */
-public class Oficina_CRUD extends javax.swing.JDialog {
+public class Vehiculo_CRUD extends javax.swing.JDialog {
 
     /**
-     * Creates new form Oficina_CRUD
+     * Creates new form Vehiculo_CRUD
      */
     Instancias instancias = new Instancias();
-    CRUD_oficina oficina = new CRUD_oficina();
 
-    public Oficina_CRUD(java.awt.Frame parent, boolean modal) {
+    public Vehiculo_CRUD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("CRUD Oficina");
+        this.setTitle("CRUD Vehiculos");
     }
 
     /**
@@ -41,14 +39,15 @@ public class Oficina_CRUD extends javax.swing.JDialog {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jMenu1.setText("Mantenimiento Oficina");
+        jMenu1.setText("Mantenimiento Vehiculos");
 
-        jMenuItem1.setText("Ingresar Oficina / Leer Oficina");
+        jMenuItem1.setText("Ingresar Vehiculo");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -56,7 +55,7 @@ public class Oficina_CRUD extends javax.swing.JDialog {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Modificar Oficina");
+        jMenuItem2.setText("Leer Vehiculo");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -64,13 +63,11 @@ public class Oficina_CRUD extends javax.swing.JDialog {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem3.setText("Eliminar Oficina");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
+        jMenuItem3.setText("Modifica Vehiculo");
         jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("Eliminar Vehiculo");
+        jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
 
@@ -100,36 +97,30 @@ public class Oficina_CRUD extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 253, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
-        this.dispose();
-        instancias.MenuCRUD();
-    }//GEN-LAST:event_jMenu3MouseClicked
 
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         this.dispose();
         instancias.Login();
     }//GEN-LAST:event_jMenu2MouseClicked
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
         this.dispose();
-        instancias.insertarOficina();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        this.dispose();
-        instancias.eliminarOficina();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+        instancias.MenuCRUD();
+    }//GEN-LAST:event_jMenu3MouseClicked
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        this.dispose();
-        instancias.moficiarOficina();
+        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        this.dispose();
+        instancias.insertarVehiculo();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,20 +139,20 @@ public class Oficina_CRUD extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Oficina_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vehiculo_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Oficina_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vehiculo_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Oficina_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vehiculo_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Oficina_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Vehiculo_CRUD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Oficina_CRUD dialog = new Oficina_CRUD(new javax.swing.JFrame(), true);
+                Vehiculo_CRUD dialog = new Vehiculo_CRUD(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -181,5 +172,6 @@ public class Oficina_CRUD extends javax.swing.JDialog {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 }

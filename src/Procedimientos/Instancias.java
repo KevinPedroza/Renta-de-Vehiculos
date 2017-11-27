@@ -13,15 +13,18 @@ import Interfaces.Insertar_estilo;
 import Interfaces.Insertar_marca;
 import Interfaces.Insertar_modelo;
 import Interfaces.Insertar_oficina;
+import Interfaces.Insertar_vehiculo;
 import Interfaces.Login;
 import Interfaces.Marca_CRUD;
 import Interfaces.MenúAdmi;
 import Interfaces.Modelo_CRUD;
+import Interfaces.Modifica_oficina;
 import Interfaces.Modificar_Estilo;
 import static Interfaces.Modificar_Estilo.Modificar_estilo;
 import Interfaces.Modificar_marca;
 import Interfaces.Modificar_modelo;
 import Interfaces.Oficina_CRUD;
+import Interfaces.Vehiculo_CRUD;
 import javax.swing.JFrame;
 
 /**
@@ -131,5 +134,23 @@ public class Instancias extends JFrame {
         Eliminar_oficina oficina = new Eliminar_oficina(this, true);
         oficina.pack();
         oficina.setVisible(true);
+    }
+    
+    public void moficiarOficina() {
+        Modifica_oficina oficina = new Modifica_oficina(this, true);
+        oficina.pack();
+        oficina.setVisible(true);
+    }
+    
+    public void menuVehiculos() {
+        Vehiculo_CRUD vehiculo = new Vehiculo_CRUD(this, true);
+        vehiculo.pack();
+        vehiculo.setVisible(true);
+    }
+    
+    public void insertarVehiculo() {
+        Insertar_vehiculo vehiculo = new Insertar_vehiculo(this, true);
+        vehiculo.pack();
+        vehiculo.setVisible(true);
     }
 }

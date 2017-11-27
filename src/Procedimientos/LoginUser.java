@@ -46,11 +46,11 @@ public class LoginUser {
         try {
 
             s = connection.createStatement();
-            rs = s.executeQuery("SELECT tipo FROM usuario WHERE nombre = '" + user + "' AND contra = MD5('" + pass + "')");
+            rs = s.executeQuery("SELECT tipo FROM usuario WHERE nombre = '" + user + "' AND contrasena = MD5('" + pass + "')");
 
             while (rs.next()) {
                 tipo = rs.getString("tipo");
-                System.out.println(tipo);
+                
             }
 
         } catch (Exception e) {
@@ -69,6 +69,5 @@ public class LoginUser {
             JOptionPane.showMessageDialog(null, "No estas Registrado, Por favor Registrese!");
         }
     }
-    
-   
+
 }

@@ -11,6 +11,9 @@ import static Interfaces.Eliminar_oficina.Tabla_eliminar_oficina;
 import static Interfaces.Insertar_oficina.Codigo_oficina;
 import static Interfaces.Insertar_oficina.Nombre_oficina;
 import static Interfaces.Insertar_oficina.Oficina_registradas;
+import static Interfaces.Modifica_oficina.Codigo_oficina_modificar;
+import static Interfaces.Modifica_oficina.Modificar_oficinas;
+import static Interfaces.Modifica_oficina.Nombre_oficina_modificar;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -30,7 +33,7 @@ public class CRUD_oficina {
     private Connection connection = null;
     private ResultSet rs = null;
     private Statement s = null;
-    private DefaultListModel<Modelo> modelo;
+    private DefaultListModel<Oficina> modelo;
     Instancias instancias = new Instancias();
 
     public void Conexion_Base_datos() {
@@ -204,6 +207,87 @@ public class CRUD_oficina {
         } else {
             JOptionPane.showMessageDialog(null, "No se ha seleccionado un registro");
 
+        }
+
+    }
+
+    public ArrayList<Oficina> obtenerOficina() {
+        ArrayList<Oficina> listaoficina = new ArrayList();
+
+        Conexion_Base_datos();
+        try {
+
+            s = connection.createStatement();
+            rs = s.executeQuery("SELECT * FROM oficina");
+
+            while (rs.next()) {
+                String id = rs.getString("id_oficina");
+                String nombre = rs.getString("nombre");
+                Oficina oficina = new Oficina(Integer.parseInt(id), nombre);
+
+                listaoficina.add(oficina);
+
+            }
+        } catch (Exception e) {
+            System.out.println("Error de conexión");
+        }
+
+        return listaoficina;
+    }
+
+    public void Llenarlista_modificar() {
+        modelo = new DefaultListModel<Oficina>();
+        ArrayList<Oficina> listaoficina = new ArrayList();
+        listaoficina = obtenerOficina();
+
+        for (Oficina modelo2 : listaoficina) {
+            modelo.addElement(modelo2);
+        }
+        Modificar_oficinas.setModel(modelo);
+
+    }
+
+    public void cargarDatosListaModificar() {
+        Oficina oficina = Modificar_oficinas.getSelectedValue();
+        Conexion_Base_datos();
+        try {
+
+            s = connection.createStatement();
+            rs = s.executeQuery("SELECT id_oficina, nombre FROM oficina WHERE id_oficina = '" + oficina.getId_oficina() + "'");
+
+            while (rs.next()) {
+                Codigo_oficina_modificar.setText(rs.getString("id_oficina"));
+                Nombre_oficina_modificar.setText(rs.getString("nombre"));
+
+            }
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    public void Modificar_oficina() {
+        Oficina oficina = Modificar_oficinas.getSelectedValue();
+
+        Conexion_Base_datos();
+
+        try {
+            String nombre = Nombre_oficina_modificar.getText();
+            String Codigo = Codigo_oficina_modificar.getText();
+
+            s = connection.createStatement();
+            int z = s.executeUpdate("UPDATE oficina SET id_oficina = '" + Codigo + "', nombre = '" + nombre + "' WHERE id_modelo = '" + oficina.getId_oficina() + "'");
+            if (z == 1) {
+                JOptionPane.showMessageDialog(null, "Se módificó el Estilo de manera exitosa");
+                Nombre_oficina_modificar.setText("");
+                Codigo_oficina_modificar.setText("");
+                Llenarlista_modificar();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al modificar el Estilo");
+            }
+        } catch (Exception e) {
+            System.out.println("Error de conexión");
         }
 
     }

@@ -69,10 +69,10 @@ public class Modificar_modelo extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(Modificar_modelo);
 
-        jLabel2.setFont(new java.awt.Font("Sitka Text", 3, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jLabel2.setText("Código Modelo");
 
-        jLabel3.setFont(new java.awt.Font("Sitka Text", 3, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jLabel3.setText("Nombre Modelo");
 
         jButton2.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
