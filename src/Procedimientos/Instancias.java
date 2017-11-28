@@ -8,6 +8,7 @@ package Procedimientos;
 import Interfaces.Eliminar_estilo;
 import Interfaces.Eliminar_modelo;
 import Interfaces.Eliminar_oficina;
+import Interfaces.Eliminar_vehiculo;
 import Interfaces.Estilo_CRUD;
 import Interfaces.Insertar_estilo;
 import Interfaces.Insertar_marca;
@@ -153,4 +154,11 @@ public class Instancias extends JFrame {
         vehiculo.pack();
         vehiculo.setVisible(true);
     }
+    
+    public void eliminarVehiculo() {
+        Eliminar_vehiculo vehi = new Eliminar_vehiculo(this, true);
+        vehi.pack();
+        vehi.setVisible(true);
+    }
+    
 }

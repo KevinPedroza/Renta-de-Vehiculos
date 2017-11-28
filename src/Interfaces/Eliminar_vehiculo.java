@@ -5,18 +5,27 @@
  */
 package Interfaces;
 
+import Procedimientos.CRUD_vehiculos;
+import Procedimientos.Instancias;
+
 /**
  *
  * @author Kevin
  */
-public class Vehiculo_CDUR extends javax.swing.JDialog {
+public class Eliminar_vehiculo extends javax.swing.JDialog {
 
     /**
-     * Creates new form Vehiculo_CDRU
+     * Creates new form Eliminar_vehiculo
      */
-    public Vehiculo_CDUR(java.awt.Frame parent, boolean modal) {
+    Instancias instancias = new Instancias();
+    CRUD_vehiculos vehi = new CRUD_vehiculos();
+
+    public Eliminar_vehiculo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Eliminar Vehiculo");
+
     }
 
     /**
@@ -28,36 +37,7 @@ public class Vehiculo_CDUR extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jMenu1.setText("Mantenimiento");
-
-        jMenuItem1.setText("jMenuItem1");
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("jMenuItem2");
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("jMenuItem3");
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem4.setText("jMenuItem4");
-        jMenu1.add(jMenuItem4);
-
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Cerrar Sesión");
-        jMenuBar1.add(jMenu2);
-
-        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,7 +47,7 @@ public class Vehiculo_CDUR extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -90,21 +70,20 @@ public class Vehiculo_CDUR extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Vehiculo_CDUR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Eliminar_vehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Vehiculo_CDUR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Eliminar_vehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Vehiculo_CDUR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Eliminar_vehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Vehiculo_CDUR.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Eliminar_vehiculo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Vehiculo_CDUR dialog = new Vehiculo_CDUR(new javax.swing.JFrame(), true);
+                Eliminar_vehiculo dialog = new Eliminar_vehiculo(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -117,12 +96,5 @@ public class Vehiculo_CDUR extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 }

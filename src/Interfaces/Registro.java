@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import Herencia.Usuario;
+import Procedimientos.Instancias;
 
 /**
  *
@@ -17,6 +18,7 @@ import Herencia.Usuario;
 public class Registro extends javax.swing.JDialog {
 
     private Usuario usuario;
+    Instancias instancias = new Instancias();
 
     /**
      * Creates new form Registro
@@ -26,6 +28,7 @@ public class Registro extends javax.swing.JDialog {
         initComponents();
         usuario = new Usuario();
         setLocationRelativeTo(null);
+        this.setTitle("Registro Usuario");
     }
 
     @SuppressWarnings("unchecked")
@@ -45,6 +48,7 @@ public class Registro extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         btnfoto = new javax.swing.JButton();
         txtcontrasena = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,6 +93,14 @@ public class Registro extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        jButton1.setText("Atrás");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,32 +109,39 @@ public class Registro extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtcedula)
-                            .addComponent(txtnombre)
-                            .addComponent(txttelefono)
-                            .addComponent(txtdireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                            .addComponent(txtcontrasena)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 112, Short.MAX_VALUE)
-                        .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnfoto, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                    .addComponent(lblfoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtcedula)
+                                    .addComponent(txtnombre)
+                                    .addComponent(txttelefono)
+                                    .addComponent(txtdireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                                    .addComponent(txtcontrasena)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 112, Short.MAX_VALUE)
+                                .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnfoto, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                            .addComponent(lblfoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -194,11 +213,24 @@ public class Registro extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnguardarMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        instancias.Login();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private boolean validarDatos() {
-        if ("".equals(usuario.getCedula())) return false;
-        if ("".equals(usuario.getNombre())) return false;
-        if ("".equals(usuario.getTelefono())) return false;
-        if ("".equals(usuario.getContrasena())) return false;
+        if ("".equals(usuario.getCedula())) {
+            return false;
+        }
+        if ("".equals(usuario.getNombre())) {
+            return false;
+        }
+        if ("".equals(usuario.getTelefono())) {
+            return false;
+        }
+        if ("".equals(usuario.getContrasena())) {
+            return false;
+        }
         return true;
     }
 
@@ -248,6 +280,7 @@ public class Registro extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnfoto;
     private javax.swing.JButton btnguardar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

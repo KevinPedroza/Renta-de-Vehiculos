@@ -14,16 +14,16 @@ import java.io.File;
 public class Vehiculos {
 
     String Placa_vehiculo;
-    Marca Codigo_marca;
-    Estilo Codigo_estilo;
-    Modelo Codigo_modelo;
+    int Codigo_marca;
+    int Codigo_estilo;
+    int Codigo_modelo;
     String Transmision_vehiculo;
     String Año;
     double Precio;
     File Foto;
     String Estado;
 
-    public Vehiculos(String Placa_vehiculo, Marca Codigo_marca, Estilo Codigo_estilo, Modelo Codigo_modelo, String Transmision_vehiculo, String Año, double Precio, File Foto, String Estado) {
+    public Vehiculos(String Placa_vehiculo, int Codigo_marca, int Codigo_estilo, int Codigo_modelo, String Transmision_vehiculo, String Año, double Precio, File Foto, String Estado) {
         this.Placa_vehiculo = Placa_vehiculo;
         this.Codigo_marca = Codigo_marca;
         this.Codigo_estilo = Codigo_estilo;
@@ -39,15 +39,15 @@ public class Vehiculos {
         return Placa_vehiculo;
     }
 
-    public Marca getCodigo_marca() {
+    public int getCodigo_marca() {
         return Codigo_marca;
     }
 
-    public Estilo getCodigo_estilo() {
+    public int getCodigo_estilo() {
         return Codigo_estilo;
     }
 
-    public Modelo getCodigo_modelo() {
+    public int getCodigo_modelo() {
         return Codigo_modelo;
     }
 
@@ -70,6 +70,5 @@ public class Vehiculos {
     public String getEstado() {
         return Estado;
     }
-
 
 }

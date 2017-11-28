@@ -37,7 +37,6 @@ public class Vehiculo_CRUD extends javax.swing.JDialog {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -47,7 +46,7 @@ public class Vehiculo_CRUD extends javax.swing.JDialog {
 
         jMenu1.setText("Mantenimiento Vehiculos");
 
-        jMenuItem1.setText("Ingresar Vehiculo");
+        jMenuItem1.setText("Ingresar Vehiculo / Leer Vehiculo");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -55,18 +54,15 @@ public class Vehiculo_CRUD extends javax.swing.JDialog {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Leer Vehiculo");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem2);
-
         jMenuItem3.setText("Modifica Vehiculo");
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Eliminar Vehiculo");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
@@ -113,14 +109,15 @@ public class Vehiculo_CRUD extends javax.swing.JDialog {
         instancias.MenuCRUD();
     }//GEN-LAST:event_jMenu3MouseClicked
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         this.dispose();
         instancias.insertarVehiculo();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        this.dispose();
+        instancias.eliminarVehiculo();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,7 +167,6 @@ public class Vehiculo_CRUD extends javax.swing.JDialog {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables

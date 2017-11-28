@@ -133,7 +133,7 @@ public class Login extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
         login.Ingresar_login();
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
@@ -145,6 +145,7 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel4MouseExited
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        this.dispose();
         Registro r = new Registro(null, true);
         r.pack();
         r.setVisible(true);

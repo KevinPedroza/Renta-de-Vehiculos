@@ -37,11 +37,13 @@ public class Usuario {
             return;
         }
         String url = "jdbc:postgresql://localhost:5432/renta_de_vehiculos";
-        String password = "postgres123";
+        String password = "kevin";
         try {
             Class.forName("org.postgresql.Driver");
             conexion = DriverManager.getConnection(url, "postgres", password);
-            if (conexion != null) System.out.println("Se conectó a la base de datos");
+            if (conexion != null) {
+
+            }
         } catch (ClassNotFoundException | SQLException e) {
         }
     }
@@ -59,7 +61,7 @@ public class Usuario {
             ps.setString(6, contrasena);
             ps.setString(7, tipo);
             int res = ps.executeUpdate();
-            System.out.println(res);
+
             return res == 1;
         } catch (SQLException e) {
             System.out.println("error" + e);
