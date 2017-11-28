@@ -6,6 +6,7 @@
 package Interfaces;
 
 import Procedimientos.LoginUser;
+import java.awt.Color;
 import javax.swing.UIManager;
 
 /**
@@ -40,7 +41,6 @@ public class Login extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         Usuario = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         Contraseña = new javax.swing.JPasswordField();
 
@@ -56,10 +56,18 @@ public class Login extends javax.swing.JDialog {
         jLabel3.setText("Contraseña");
 
         jLabel4.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
-        jLabel4.setText("Registrarse aqui -->");
-
-        jRadioButton1.setFont(new java.awt.Font("Sitka Text", 1, 12)); // NOI18N
-        jRadioButton1.setText("Registrarse");
+        jLabel4.setText("--> Registrarse aqui <--");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel4MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel4MouseExited(evt);
+            }
+        });
 
         jButton1.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
         jButton1.setText("Ingresar");
@@ -73,17 +81,6 @@ public class Login extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,6 +97,15 @@ public class Login extends javax.swing.JDialog {
                 .addGap(0, 118, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(106, 106, 106))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(186, 186, 186)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel4)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,12 +121,10 @@ public class Login extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jRadioButton1))
-                .addGap(19, 19, 19))
+                .addComponent(jLabel4)
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -131,6 +135,20 @@ public class Login extends javax.swing.JDialog {
         login.Ingresar_login();
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel4MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseEntered
+        jLabel4.setForeground(new Color(80, 80, 80));
+    }//GEN-LAST:event_jLabel4MouseEntered
+
+    private void jLabel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseExited
+        jLabel4.setForeground(new Color(0, 0, 0));
+    }//GEN-LAST:event_jLabel4MouseExited
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        Registro r = new Registro(null, true);
+        r.pack();
+        r.setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -178,6 +196,5 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JRadioButton jRadioButton1;
     // End of variables declaration//GEN-END:variables
 }
