@@ -24,6 +24,7 @@ import Interfaces.Modificar_Estilo;
 import static Interfaces.Modificar_Estilo.Modificar_estilo;
 import Interfaces.Modificar_marca;
 import Interfaces.Modificar_modelo;
+import Interfaces.Modificar_vehiculo;
 import Interfaces.Oficina_CRUD;
 import Interfaces.Vehiculo_CRUD;
 import javax.swing.JFrame;
@@ -161,4 +162,9 @@ public class Instancias extends JFrame {
         vehi.setVisible(true);
     }
     
+    public void modificarVehiculo() {
+        Modificar_vehiculo vehi = new Modificar_vehiculo(this, true);
+        vehi.pack();
+        vehi.setVisible(true);
+    }
 }
