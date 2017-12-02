@@ -1,10 +1,12 @@
 package Procedimientos;
 
+import Herencia.Usuario;
 import static Interfaces.Login.Contraseña;
 import static Interfaces.Login.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -32,41 +34,47 @@ public class LoginUser {
             if (connection != null) {
 
             }
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Problem when connecting to the database");
         }
     }
 
     public void Ingresar_login() {
+        Usuario usuario = new Usuario();
         String user = Usuario.getText();
-        String pass = Contraseña.getText();
-        String tipo = null;
-
+        String pass = new String (Contraseña.getPassword());
         Conexion_Base_datos();
         try {
-
+            
             s = connection.createStatement();
-            rs = s.executeQuery("SELECT tipo FROM usuario WHERE nombre = '" + user + "' AND contrasena = MD5('" + pass + "')");
-
+            rs = s.executeQuery("SELECT cedula, nombre, telefono, direccion, foto, contrasena, tipo"
+                    + " FROM usuario WHERE nombre = '" + user + "' AND contrasena = MD5('" + pass + "')");
+            
             while (rs.next()) {
-                tipo = rs.getString("tipo");
-                
+                usuario.setCedula(rs.getString("cedula"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setTelefono(rs.getString("telefono"));
+                usuario.setDireccion(rs.getString("direccion"));
+                usuario.setFoto(null);
+                usuario.setContrasena(rs.getString("contrasena"));
+                usuario.setTipo(rs.getString("tipo"));
             }
-
-        } catch (Exception e) {
+        
+        } catch (SQLException e) {
             System.out.println("Error de conexión");
-
+        
         }
         try {
-            if (tipo.equals("v")) {
+            if ("v".equals(usuario.getTipo())) {
                 JOptionPane.showMessageDialog(null, "Bienvenido Administrador!");
                 instancias.MenuCRUD();
-            }
-            if (!tipo.equals("v")) {
+            } else {
                 JOptionPane.showMessageDialog(null, "Bienvenido Cliente!");
+                instancias.buscarVehiculo(usuario);
             }
         } catch (java.lang.NullPointerException e) {
             JOptionPane.showMessageDialog(null, "No estas Registrado, Por favor Registrese!");
+            instancias.Login();
         }
     }
 

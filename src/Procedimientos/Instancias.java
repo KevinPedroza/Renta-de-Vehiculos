@@ -5,6 +5,8 @@
  */
 package Procedimientos;
 
+import Herencia.Usuario;
+import Interfaces.BuscarVehiculo;
 import Interfaces.Eliminar_estilo;
 import Interfaces.Eliminar_modelo;
 import Interfaces.Eliminar_oficina;
@@ -51,6 +53,11 @@ public class Instancias extends JFrame {
         Login login = new Login(this, true);
         login.pack();
         login.setVisible(true);
+    }
+    
+    public void buscarVehiculo(Usuario usuario) {
+        BuscarVehiculo b = new BuscarVehiculo(usuario);
+        b.setVisible(true);
     }
     
     public void Insertarmarca() {

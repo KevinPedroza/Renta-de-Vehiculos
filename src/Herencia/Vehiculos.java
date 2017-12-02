@@ -35,6 +35,9 @@ public class Vehiculos {
         this.Estado = Estado;
     }
 
+    public Vehiculos() {
+    }
+
     public String getPlaca_vehiculo() {
         return Placa_vehiculo;
     }
@@ -69,6 +72,42 @@ public class Vehiculos {
 
     public String getEstado() {
         return Estado;
+    }
+
+    public void setPlaca_vehiculo(String Placa_vehiculo) {
+        this.Placa_vehiculo = Placa_vehiculo;
+    }
+
+    public void setCodigo_marca(int Codigo_marca) {
+        this.Codigo_marca = Codigo_marca;
+    }
+
+    public void setCodigo_estilo(int Codigo_estilo) {
+        this.Codigo_estilo = Codigo_estilo;
+    }
+
+    public void setCodigo_modelo(int Codigo_modelo) {
+        this.Codigo_modelo = Codigo_modelo;
+    }
+
+    public void setTransmision_vehiculo(String Transmision_vehiculo) {
+        this.Transmision_vehiculo = Transmision_vehiculo;
+    }
+
+    public void setAño(String Año) {
+        this.Año = Año;
+    }
+
+    public void setPrecio(double Precio) {
+        this.Precio = Precio;
+    }
+
+    public void setFoto(File Foto) {
+        this.Foto = Foto;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
     }
 
 }
