@@ -8,6 +8,7 @@ package Interfaces;
 import Herencia.Oficina;
 import Procedimientos.CRUD_oficina;
 import Procedimientos.Instancias;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -73,6 +74,8 @@ public class Modifica_oficina extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jLabel3.setText("Nombre Oficina");
+
+        Codigo_oficina_modificar.setEnabled(false);
 
         jButton2.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jButton2.setText("Modificar Oficina");
@@ -150,7 +153,14 @@ public class Modifica_oficina extends javax.swing.JDialog {
     }//GEN-LAST:event_Modificar_oficinasValueChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        oficina.Modificar_oficina();
+        if (Modificar_oficinas.isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Seleccione una Oficina!");
+        } else if (Nombre_oficina_modificar.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Llene los campos Completamente!");
+        } else {
+            oficina.Modificar_oficina();
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

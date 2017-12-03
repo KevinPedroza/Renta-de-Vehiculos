@@ -71,6 +71,8 @@ public class Modificar_Estilo extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Sitka Text", 3, 12)); // NOI18N
         jLabel3.setText("Nombre Estilo");
 
+        Codigo_Estilo.setEnabled(false);
+
         jButton2.setFont(new java.awt.Font("Sitka Text", 3, 12)); // NOI18N
         jButton2.setText("Modificar Estilo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

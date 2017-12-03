@@ -64,6 +64,8 @@ public class Modificar_marca extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Sitka Text", 1, 12)); // NOI18N
         jLabel2.setText("Código Marca");
 
+        Marca_codigo_modificar.setEnabled(false);
+
         jLabel3.setFont(new java.awt.Font("Sitka Text", 1, 12)); // NOI18N
         jLabel3.setText("Nombre Marca");
 

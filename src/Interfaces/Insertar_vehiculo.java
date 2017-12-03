@@ -173,8 +173,20 @@ public class Insertar_vehiculo extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jLabel7.setText("Año");
 
+        Año.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                AñoKeyTyped(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jLabel8.setText("Précio  $");
+
+        Precio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                PrecioKeyTyped(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jLabel9.setText("Estado");
@@ -432,6 +444,28 @@ public class Insertar_vehiculo extends javax.swing.JDialog {
     private void Vehiculos_registradosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Vehiculos_registradosMouseClicked
         vehi.enseñarFoto();
     }//GEN-LAST:event_Vehiculos_registradosMouseClicked
+
+    private void AñoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AñoKeyTyped
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c)) {
+            getToolkit().beep();
+
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo Números");
+        }
+    }//GEN-LAST:event_AñoKeyTyped
+
+    private void PrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PrecioKeyTyped
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c)) {
+            getToolkit().beep();
+
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo Números");
+        }
+    }//GEN-LAST:event_PrecioKeyTyped
 
     /**
      * @param args the command line arguments

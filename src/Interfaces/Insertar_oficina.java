@@ -72,6 +72,12 @@ public class Insertar_oficina extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jLabel3.setText("Código Oficina");
 
+        Codigo_oficina.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Codigo_oficinaKeyTyped(evt);
+            }
+        });
+
         jButton2.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jButton2.setText("Ingresar la Oficina");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +180,17 @@ public class Insertar_oficina extends javax.swing.JDialog {
             oficina.Mostraroficina();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void Codigo_oficinaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Codigo_oficinaKeyTyped
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c)) {
+            getToolkit().beep();
+
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo Números");
+        }
+    }//GEN-LAST:event_Codigo_oficinaKeyTyped
 
     /**
      * @param args the command line arguments

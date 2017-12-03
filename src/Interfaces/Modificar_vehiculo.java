@@ -5,8 +5,19 @@
  */
 package Interfaces;
 
+import Herencia.Estilo;
+import Herencia.Marca;
+import Herencia.Modelo;
+import static Interfaces.Insertar_vehiculo.Imagen;
 import Procedimientos.CRUD_vehiculos;
 import Procedimientos.Instancias;
+import java.awt.Image;
+import java.awt.event.KeyEvent;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -19,12 +30,39 @@ public class Modificar_vehiculo extends javax.swing.JDialog {
      */
     Instancias instancias = new Instancias();
     CRUD_vehiculos vehi = new CRUD_vehiculos();
+    
 
     public Modificar_vehiculo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Modificar Vehiculo");
+        vehi.Llenarlista_modificar();
+        vehi.llenarMarcaModi();
+        vehi.llenarModeloModi();
+        vehi.llenarEstiloModi();
+        Marca_modi.setSelectedItem("Hyundai");
+    }
+
+    public void insertarImagen() {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de imagen jpg, gif o png", "jpg", "gif", "png");
+        chooser.setFileFilter(filter);
+
+        int valor = chooser.showOpenDialog(this);
+        if (valor == JFileChooser.APPROVE_OPTION) {
+            int anchoimagen = Foto_modi.getWidth();
+            int altoimagen = Foto_modi.getHeight();
+
+            Imagen = chooser.getSelectedFile();
+            ImageIcon icono = new ImageIcon(Imagen.getAbsolutePath());
+            Image imagen = icono.getImage();
+            imagen.getScaledInstance(anchoimagen, altoimagen, Image.SCALE_DEFAULT);
+
+            ImageIcon icononuevo = new ImageIcon(imagen);
+
+            Foto_modi.setIcon(icononuevo);
+        }
     }
 
     /**
@@ -36,21 +74,374 @@ public class Modificar_vehiculo extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Placas_vehi = new javax.swing.JList<>();
+        jLabel4 = new javax.swing.JLabel();
+        Placa_modi = new javax.swing.JTextField();
+        Label_marca = new javax.swing.JLabel();
+        Marca_modi = new javax.swing.JComboBox<>();
+        Label_modelo = new javax.swing.JLabel();
+        Modelo_modi = new javax.swing.JComboBox<>();
+        Label_estilo = new javax.swing.JLabel();
+        Estilo_modi = new javax.swing.JComboBox<>();
+        Label_trans = new javax.swing.JLabel();
+        Transmision_modi = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        Año_modi = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        Label_estado = new javax.swing.JLabel();
+        Precio_modi = new javax.swing.JTextField();
+        Estado_modi = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        Foto_modi = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
+        jLabel2.setText("jLabel2");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Sitka Text", 3, 24)); // NOI18N
+        jLabel1.setText("Modificar Vehiculo");
+
+        jLabel3.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        jLabel3.setText("Seleccione un número de Placa");
+
+        Placas_vehi.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                Placas_vehiValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(Placas_vehi);
+
+        jLabel4.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        jLabel4.setText("Placa");
+
+        Placa_modi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Placa_modiKeyPressed(evt);
+            }
+        });
+
+        Label_marca.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        Label_marca.setText("Marca Vehículo");
+
+        Marca_modi.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        Marca_modi.setSelectedItem("Hyundai");
+        Marca_modi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Marca_modiActionPerformed(evt);
+            }
+        });
+
+        Label_modelo.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        Label_modelo.setText("Modelo Vehículo");
+
+        Modelo_modi.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        Modelo_modi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Modelo_modiActionPerformed(evt);
+            }
+        });
+
+        Label_estilo.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        Label_estilo.setText("Estilo Vehículo");
+
+        Estilo_modi.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        Estilo_modi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Estilo_modiActionPerformed(evt);
+            }
+        });
+
+        Label_trans.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        Label_trans.setText("Transmisión");
+
+        Transmision_modi.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        Transmision_modi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Autómatico" }));
+        Transmision_modi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Transmision_modiActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        jLabel9.setText("Año");
+
+        Año_modi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Año_modiKeyTyped(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        jLabel10.setText("Precio");
+
+        Label_estado.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        Label_estado.setText("Estado");
+
+        Precio_modi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Precio_modiKeyTyped(evt);
+            }
+        });
+
+        Estado_modi.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        Estado_modi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Ocupado" }));
+        Estado_modi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Estado_modiActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        jLabel12.setText("Cambiar Foto Toque el Cuadro");
+
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+
+        Foto_modi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Foto_modiMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(Foto_modi, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Foto_modi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        jButton1.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
+        jButton1.setText("Modificar Vehiculo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
+        jButton2.setText("Atrás");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(229, 229, 229)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(75, 75, 75)
+                                .addComponent(jLabel4)
+                                .addGap(24, 24, 24))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(Label_modelo)
+                                    .addComponent(Label_marca)
+                                    .addComponent(Label_estilo))
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Placa_modi, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(Modelo_modi, 0, 93, Short.MAX_VALUE)
+                                .addComponent(Estilo_modi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Marca_modi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(110, 110, 110)
+                                        .addComponent(jLabel9))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(97, 97, 97)
+                                        .addComponent(jLabel10))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(93, 93, 93)
+                                        .addComponent(Label_estado)))
+                                .addGap(25, 25, 25))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Label_trans)
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Transmision_modi, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Año_modi, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Precio_modi, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Estado_modi, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(199, 199, 199)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel12)
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(Año_modi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(Precio_modi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Label_estado)
+                            .addComponent(Estado_modi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(Placa_modi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_trans)
+                            .addComponent(Transmision_modi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Marca_modi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_marca))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Modelo_modi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_modelo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Estilo_modi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Label_estilo))))
+                .addGap(40, 40, 40)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        instancias.menuVehiculos();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void Placas_vehiValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_Placas_vehiValueChanged
+        vehi.cargarDatosListaModificar();
+        vehi.enseñarFotoModi();
+    }//GEN-LAST:event_Placas_vehiValueChanged
+
+    private void Año_modiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Año_modiKeyTyped
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c)) {
+            getToolkit().beep();
+
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo Números");
+        }
+    }//GEN-LAST:event_Año_modiKeyTyped
+
+    private void Precio_modiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Precio_modiKeyTyped
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c)) {
+            getToolkit().beep();
+
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo Números");
+        }
+    }//GEN-LAST:event_Precio_modiKeyTyped
+
+    private void Placa_modiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Placa_modiKeyPressed
+        String placa = Placa_modi.getText();
+        if (placa.length() > 2 & placa.length() < 4) {
+            Placa_modi.setText(placa += "-");
+
+        }
+        if (placa.length() == 7) {
+            Placa_modi.setEnabled(false);
+        }
+
+        if (evt.getKeyChar() == KeyEvent.VK_BACK_SPACE) {
+            Placa_modi.setText("");
+        }
+    }//GEN-LAST:event_Placa_modiKeyPressed
+
+    private void Foto_modiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Foto_modiMouseClicked
+        insertarImagen();
+    }//GEN-LAST:event_Foto_modiMouseClicked
+
+    private void Marca_modiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Marca_modiActionPerformed
+        Label_marca.setText("Nueva Marca: " + Marca_modi.getSelectedItem());
+    }//GEN-LAST:event_Marca_modiActionPerformed
+
+    private void Modelo_modiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Modelo_modiActionPerformed
+        Label_modelo.setText("Nuevo Modelo: " + Modelo_modi.getSelectedItem());
+    }//GEN-LAST:event_Modelo_modiActionPerformed
+
+    private void Estilo_modiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Estilo_modiActionPerformed
+        Label_estilo.setText("Nuevo Estilo: " + Estilo_modi.getSelectedItem());
+    }//GEN-LAST:event_Estilo_modiActionPerformed
+
+    private void Transmision_modiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Transmision_modiActionPerformed
+
+    }//GEN-LAST:event_Transmision_modiActionPerformed
+
+    private void Estado_modiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Estado_modiActionPerformed
+
+    }//GEN-LAST:event_Estado_modiActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (Placas_vehi.isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Seleccione un Número de Placa!");
+        } else {
+            vehi.modificarVehiculo();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -95,5 +486,31 @@ public class Modificar_vehiculo extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JTextField Año_modi;
+    public static javax.swing.JComboBox<String> Estado_modi;
+    public static javax.swing.JComboBox<Estilo> Estilo_modi;
+    public static javax.swing.JLabel Foto_modi;
+    public static javax.swing.JLabel Label_estado;
+    public static javax.swing.JLabel Label_estilo;
+    public static javax.swing.JLabel Label_marca;
+    public static javax.swing.JLabel Label_modelo;
+    public static javax.swing.JLabel Label_trans;
+    public static javax.swing.JComboBox<Marca> Marca_modi;
+    public static javax.swing.JComboBox<Modelo> Modelo_modi;
+    public static javax.swing.JTextField Placa_modi;
+    public static javax.swing.JList<String> Placas_vehi;
+    public static javax.swing.JTextField Precio_modi;
+    public static javax.swing.JComboBox<String> Transmision_modi;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

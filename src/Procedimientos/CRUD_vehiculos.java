@@ -25,9 +25,23 @@ import static Interfaces.Insertar_vehiculo.Precio;
 import static Interfaces.Insertar_vehiculo.Transmision;
 import static Interfaces.Insertar_vehiculo.Vehiculos_registrados;
 import static Interfaces.Insertar_vehiculo.label_imagen;
+import static Interfaces.Modificar_vehiculo.Año_modi;
+import static Interfaces.Modificar_vehiculo.Estado_modi;
+import static Interfaces.Modificar_vehiculo.Estilo_modi;
+import static Interfaces.Modificar_vehiculo.Foto_modi;
+import static Interfaces.Modificar_vehiculo.Label_estilo;
+import static Interfaces.Modificar_vehiculo.Label_marca;
+import static Interfaces.Modificar_vehiculo.Label_modelo;
+import static Interfaces.Modificar_vehiculo.Marca_modi;
+import static Interfaces.Modificar_vehiculo.Modelo_modi;
+import static Interfaces.Modificar_vehiculo.Placa_modi;
+import static Interfaces.Modificar_vehiculo.Placas_vehi;
+import static Interfaces.Modificar_vehiculo.Precio_modi;
+import static Interfaces.Modificar_vehiculo.Transmision_modi;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -56,9 +70,17 @@ public class CRUD_vehiculos {
     private ResultSet rs = null;
     private Statement s = null;
     private DefaultComboBoxModel<Marca> marca;
+    private DefaultComboBoxModel<Marca> marcamodi;
+    private DefaultComboBoxModel<Marca> marcacambiar;
     private DefaultComboBoxModel<Modelo> modelo;
+    private DefaultComboBoxModel<Modelo> modelomodi;
+    private DefaultComboBoxModel<Modelo> modelocambiar;
     private DefaultComboBoxModel<Estilo> estilo;
+    private DefaultComboBoxModel<Estilo> estilomodi;
+    private DefaultComboBoxModel<Estilo> estilocambiar;
     Instancias instancias = new Instancias();
+    private DefaultListModel placas;
+    FileInputStream Imagen_modi;
 
     public void Conexion_Base_datos() {
         if (connection != null) {
@@ -113,6 +135,18 @@ public class CRUD_vehiculos {
 
     }
 
+    public void llenarMarcaModi() {
+        marcamodi = new DefaultComboBoxModel<Marca>();
+        ArrayList<Marca> listamarca = new ArrayList();
+        listamarca = obtenerMarca();
+
+        for (Marca marca2 : listamarca) {
+            marcamodi.addElement(marca2);
+        }
+        Marca_modi.setModel(marcamodi);
+
+    }
+
     public ArrayList<Modelo> obtenerModelo() {
         ArrayList<Modelo> listamodelo = new ArrayList();
 
@@ -149,6 +183,18 @@ public class CRUD_vehiculos {
 
     }
 
+    public void llenarModeloModi() {
+        modelomodi = new DefaultComboBoxModel<Modelo>();
+        ArrayList<Modelo> listamodelo = new ArrayList();
+        listamodelo = obtenerModelo();
+
+        for (Modelo modelo2 : listamodelo) {
+            modelomodi.addElement(modelo2);
+        }
+        Modelo_modi.setModel(modelomodi);
+
+    }
+
     public ArrayList<Estilo> obtenerEstilo() {
         ArrayList<Estilo> listaestilo = new ArrayList();
 
@@ -182,6 +228,18 @@ public class CRUD_vehiculos {
             estilo.addElement(estilo2);
         }
         Estilo_vehiculo.setModel(estilo);
+
+    }
+
+    public void llenarEstiloModi() {
+        estilomodi = new DefaultComboBoxModel<Estilo>();
+        ArrayList<Estilo> listaestilo = new ArrayList();
+        listaestilo = obtenerEstilo();
+
+        for (Estilo estilo2 : listaestilo) {
+            estilomodi.addElement(estilo2);
+        }
+        Estilo_modi.setModel(estilomodi);
 
     }
 
@@ -509,4 +567,184 @@ public class CRUD_vehiculos {
         }
 
     }
+
+    public ArrayList obtenerPlaca() {
+        ArrayList listaoficina = new ArrayList();
+
+        Conexion_Base_datos();
+        try {
+
+            s = connection.createStatement();
+            rs = s.executeQuery("SELECT placa FROM vehiculo");
+
+            while (rs.next()) {
+                String id = rs.getString("placa");
+
+                listaoficina.add(id);
+
+            }
+        } catch (Exception e) {
+            System.out.println("Error de conexión");
+        }
+
+        return listaoficina;
+    }
+
+    public void Llenarlista_modificar() {
+        placas = new DefaultListModel();
+        ArrayList listaoficina = new ArrayList();
+        listaoficina = obtenerPlaca();
+
+        for (int i = 0; i < listaoficina.size(); i++) {
+            placas.addElement(listaoficina.get(i));
+        }
+        Placas_vehi.setModel(placas);
+
+    }
+
+    public void cargarDatosListaModificar() {
+        String opci = Placas_vehi.getSelectedValue();
+        Conexion_Base_datos();
+        try {
+
+            s = connection.createStatement();
+            rs = s.executeQuery("SELECT v.placa, m.nombre as marca, a.nombre as modelo, e.nombre as estilo , v.transmision, v.ano, v.precio, v.estado FROM vehiculo v, marcas m, modelo a, estilo e\n"
+                    + "WHERE v.id_marca = m.id_marca AND a.id_modelo = v.id_modelo AND e.id_estilo = v.id_estilo and v.placa = '" + opci + "' order by v.placa");
+
+            while (rs.next()) {
+                Placa_modi.setText(rs.getString("placa"));
+                Transmision_modi.setSelectedItem(rs.getString("transmision"));
+                Label_marca.setText("Marca: " + rs.getString("marca"));
+                Label_modelo.setText("Modelo: " + rs.getString("modelo"));
+                Label_estilo.setText("Estilo: " + rs.getString("estilo"));
+                Año_modi.setText(rs.getString("ano"));
+                Precio_modi.setText(rs.getString("precio"));
+                Estado_modi.setSelectedItem(rs.getString("estado"));
+
+            }
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    public InputStream buscarFotoModi() {
+        InputStream foto = null;
+        try {
+            String opci = Placas_vehi.getSelectedValue();
+
+            Conexion_Base_datos();
+            try {
+
+                s = connection.createStatement();
+                rs = s.executeQuery("SELECT foto FROM vehiculo WHERE placa = '" + opci + "'");
+
+                while (rs.next()) {
+                    foto = rs.getBinaryStream("foto");
+                }
+            } catch (Exception e) {
+                System.out.println("Error de conexión");
+            }
+
+        } catch (java.lang.NullPointerException e) {
+        }
+        return foto;
+    }
+
+    public void enseñarFotoModi() {
+        ImageIcon imagen = null;
+        try {
+            InputStream us = buscarFotoModi();
+            BufferedImage bi = ImageIO.read(us);
+            imagen = new ImageIcon(bi);
+
+            Foto_modi.setIcon(imagen);
+
+        } catch (Exception e) {
+        }
+
+    }
+
+    public void modificarVehiculo() {
+        String opci = Placas_vehi.getSelectedValue();
+        if (Imagen == null) {
+            Conexion_Base_datos();
+            try {
+                String placa = Placa_modi.getText();
+                Marca marca = (Marca) Marca_modi.getSelectedItem();
+                Modelo modelo = (Modelo) Modelo_modi.getSelectedItem();
+                Estilo estilo = (Estilo) Estilo_modi.getSelectedItem();
+                String transmision = Transmision_modi.getSelectedItem().toString();
+                String año = Año_modi.getText();
+                String precio = Precio_modi.getText();
+                String estado = Estado_modi.getSelectedItem().toString();
+                Vehiculos vehiculo = new Vehiculos(placa, marca.getCodigo_marca(), estilo.getCodigo_estilo(), modelo.getCodigo_modelo(), transmision, año, Double.parseDouble(precio), Imagen, estado);
+                
+
+                String sql = "UPDATE vehiculo SET placa = ? , id_marca = ? , id_modelo = ? , id_estilo = ? , transmision = ?, ano = ?, precio = ?, estado = ?  WHERE placa = '" + opci + "'";
+                PreparedStatement ps = connection.prepareStatement(sql);
+
+                ps.setString(1, vehiculo.getPlaca_vehiculo());
+                ps.setInt(2, vehiculo.getCodigo_marca());
+                ps.setInt(3, vehiculo.getCodigo_modelo());
+                ps.setInt(4, vehiculo.getCodigo_estilo());
+                ps.setString(5, vehiculo.getTransmision_vehiculo());
+                ps.setString(6, vehiculo.getAño());
+                ps.setDouble(7, vehiculo.getPrecio());
+                ps.setString(8, vehiculo.getEstado());
+                int z = ps.executeUpdate();
+                if (z == 1) {
+                    JOptionPane.showMessageDialog(null, "Se Modificó el Vehiculo de manera exitosa");
+                    Llenarlista_modificar();
+                    Placa_modi.setText("");
+                    Año_modi.setText("");
+                    Precio_modi.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al Modificar el Vehiculo!");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al Modificar el Vehiculo , ya existe esa Placa " + e);
+            }
+        } else {
+            Conexion_Base_datos();
+            try {
+                String placa = Placa_modi.getText();
+                Marca marca = (Marca) Marca_modi.getSelectedItem();
+                Modelo modelo = (Modelo) Modelo_modi.getSelectedItem();
+                Estilo estilo = (Estilo) Estilo_modi.getSelectedItem();
+                String transmision = Transmision_modi.getSelectedItem().toString();
+                String año = Año_modi.getText();
+                String precio = Precio_modi.getText();
+                String estado = Estado_modi.getSelectedItem().toString();
+                Vehiculos vehiculo = new Vehiculos(placa, marca.getCodigo_marca(), estilo.getCodigo_estilo(), modelo.getCodigo_modelo(), transmision, año, Double.parseDouble(precio), Imagen, estado);
+                FileInputStream foto = new FileInputStream(vehiculo.getFoto());
+
+                String sql = "UPDATE vehiculo SET placa = ? , id_marca = ? , id_modelo = ? , id_estilo = ? , transmision = ?, ano = ?, precio = ?, foto = ?, estado = ?  WHERE placa = '" + opci + "'";
+                PreparedStatement ps = connection.prepareStatement(sql);
+
+                ps.setString(1, vehiculo.getPlaca_vehiculo());
+                ps.setInt(2, vehiculo.getCodigo_marca());
+                ps.setInt(3, vehiculo.getCodigo_modelo());
+                ps.setInt(4, vehiculo.getCodigo_estilo());
+                ps.setString(5, vehiculo.getTransmision_vehiculo());
+                ps.setString(6, vehiculo.getAño());
+                ps.setDouble(7, vehiculo.getPrecio());
+                ps.setBinaryStream(8, foto, (int) vehiculo.getFoto().length());
+                ps.setString(9, vehiculo.getEstado());
+                int z = ps.executeUpdate();
+                if (z == 1) {
+                    JOptionPane.showMessageDialog(null, "Se Modificó el Vehiculo de manera exitosa");
+                    Llenarlista_modificar();
+                    Placa_modi.setText("");
+                    Año_modi.setText("");
+                    Precio_modi.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al Modificar el Vehiculo!");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al Modificar el Vehiculo , ya existe esa Placa " + e);
+            }
+        }
+    }
+
 }

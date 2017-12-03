@@ -75,6 +75,8 @@ public class Modificar_modelo extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jLabel3.setText("Nombre Modelo");
 
+        codigomodelomodificar.setEnabled(false);
+
         jButton2.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jButton2.setText("Modificar Modelo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

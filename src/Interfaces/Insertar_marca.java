@@ -61,6 +61,12 @@ public class Insertar_marca extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
         jLabel3.setText("Código Marca");
 
+        Codigo_marca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Codigo_marcaKeyTyped(evt);
+            }
+        });
+
         jButton1.setFont(new java.awt.Font("Sitka Text", 1, 14)); // NOI18N
         jButton1.setText("Ingresar Marca");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +175,17 @@ public class Insertar_marca extends javax.swing.JDialog {
         this.dispose();
         instancias.MarcaCRUD();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void Codigo_marcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Codigo_marcaKeyTyped
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c)) {
+            getToolkit().beep();
+
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo Números");
+        }
+    }//GEN-LAST:event_Codigo_marcaKeyTyped
 
     /**
      * @param args the command line arguments

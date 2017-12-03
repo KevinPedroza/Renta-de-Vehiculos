@@ -69,6 +69,12 @@ public class Insertar_modelo extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jLabel3.setText("Código Modelo");
 
+        Codigo_modelo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Codigo_modeloKeyTyped(evt);
+            }
+        });
+
         jButton2.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jButton2.setText("Ingresar Estilo");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -171,6 +177,17 @@ public class Insertar_modelo extends javax.swing.JDialog {
             modelo.Mostrarmodelos();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void Codigo_modeloKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Codigo_modeloKeyTyped
+        char c = evt.getKeyChar();
+
+        if (Character.isLetter(c)) {
+            getToolkit().beep();
+
+            evt.consume();
+            JOptionPane.showMessageDialog(null, "Ingrese solo Números");
+        }
+    }//GEN-LAST:event_Codigo_modeloKeyTyped
 
     /**
      * @param args the command line arguments
