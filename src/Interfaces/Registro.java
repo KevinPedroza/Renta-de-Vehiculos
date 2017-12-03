@@ -10,6 +10,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import Herencia.Usuario;
 import Procedimientos.Instancias;
+import Procedimientos.LoginUser;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Registro extends javax.swing.JDialog {
 
     private Usuario usuario;
     Instancias instancias = new Instancias();
+    LoginUser user = new LoginUser();
 
     /**
      * Creates new form Registro
@@ -29,6 +31,8 @@ public class Registro extends javax.swing.JDialog {
         usuario = new Usuario();
         setLocationRelativeTo(null);
         this.setTitle("Registro Usuario");
+        user.verificarAdmi();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -49,6 +53,7 @@ public class Registro extends javax.swing.JDialog {
         btnfoto = new javax.swing.JButton();
         txtcontrasena = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
+        Administrador_check = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -101,6 +106,9 @@ public class Registro extends javax.swing.JDialog {
             }
         });
 
+        Administrador_check.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        Administrador_check.setText("Administrador");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,7 +141,8 @@ public class Registro extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnfoto, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                            .addComponent(lblfoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lblfoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(Administrador_check))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -141,7 +150,7 @@ public class Registro extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -152,23 +161,24 @@ public class Registro extends javax.swing.JDialog {
                         .addGap(31, 31, 31)
                         .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(Administrador_check))
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtcedula, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)))
-                            .addComponent(lblfoto, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnfoto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
-                        .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27)
+                                    .addComponent(jLabel2))
+                                .addGap(76, 76, 76)
+                                .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnfoto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblfoto, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(23, 23, 23)
                 .addComponent(btnguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
         );
@@ -201,12 +211,18 @@ public class Registro extends javax.swing.JDialog {
         usuario.setTelefono(txttelefono.getText());
         usuario.setDireccion(txtdireccion.getText());
         usuario.setContrasena(new String(txtcontrasena.getPassword()));
-        usuario.setTipo("c");
+        if (Administrador_check.isSelected()) {
+            usuario.setTipo("v");
+        } else {
+            usuario.setTipo("c");
+        }
+
         if (validarDatos()) {
             boolean res = usuario.registrar();
             if (res) {
                 this.dispose();
                 JOptionPane.showMessageDialog(null, "Se registró el usuario exitosamente");
+                instancias.Login();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos para registrar al usuario");
@@ -278,6 +294,7 @@ public class Registro extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JCheckBox Administrador_check;
     private javax.swing.JButton btnfoto;
     private javax.swing.JButton btnguardar;
     private javax.swing.JButton jButton1;

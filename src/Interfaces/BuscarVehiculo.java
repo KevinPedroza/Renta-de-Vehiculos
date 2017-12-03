@@ -157,6 +157,11 @@ public class BuscarVehiculo extends javax.swing.JFrame {
                 btnbuscarMouseClicked(evt);
             }
         });
+        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarActionPerformed(evt);
+            }
+        });
 
         cmbmarca.setEditable(true);
 
@@ -290,6 +295,10 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         this.dispose();
         l.setVisible(true);
     }//GEN-LAST:event_lbllogoutMouseClicked
+
+    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnbuscarActionPerformed
 
     /**
      * @param args the command line arguments

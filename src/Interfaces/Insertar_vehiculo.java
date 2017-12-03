@@ -250,6 +250,7 @@ public class Insertar_vehiculo extends javax.swing.JDialog {
 
         label_imagen.setBackground(new java.awt.Color(204, 0, 0));
         label_imagen.setForeground(new java.awt.Color(153, 255, 102));
+        label_imagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
