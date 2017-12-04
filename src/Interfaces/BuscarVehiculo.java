@@ -6,8 +6,10 @@ import Herencia.Modelo;
 import Herencia.Usuario;
 import Herencia.Vehiculos;
 import Procedimientos.CRUD_vehiculos;
+import Procedimientos.ListaVehiculos;
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 
@@ -19,10 +21,9 @@ public class BuscarVehiculo extends javax.swing.JFrame {
 
     boolean[] filtros = new boolean[6];
     DefaultListModel listModel;
+    ListaVehiculos lv;
     Vehiculos vehiculo;
-    Marca marca;
-    Modelo modelo;
-    Estilo estilo;
+    Usuario usuario;
 
     /**
      * Creates new form BuscarVehiculo
@@ -30,12 +31,22 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     public BuscarVehiculo() {
         initComponents();
         setLocationRelativeTo(null);
+        listModel = new DefaultListModel();
+        lista.setModel(listModel);
+        lv = new ListaVehiculos();
+        lista.setCellRenderer(lv);
+        mostrarVehiculos();
         llenarCombos();
     }
     
     public BuscarVehiculo(Usuario usuario) {
         initComponents();
         setLocationRelativeTo(null);
+        listModel = new DefaultListModel();
+        lista.setModel(listModel);
+        lv = new ListaVehiculos();
+        lista.setCellRenderer(lv);
+        mostrarVehiculos();
         llenarCombos();
     }
 
@@ -63,9 +74,20 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         }
         cmbmodelo.setModel(model3);
     }
+    
+    private void mostrarVehiculos() {
+        filtro();
+        establecerDatos();
+        LinkedList<Vehiculos> vehiculos = vehiculo.buscar(filtros);
+        listModel.removeAllElements();
+        if (vehiculos != null) {
+            for (int i = 0; i < vehiculos.size(); i++) {
+                listModel.addElement(vehiculos.get(i));
+            }
+        }
+    }
 
     private void filtro() {
-        vehiculo = new Vehiculos();
         filtros[0] = chkano.isSelected();
         filtros[1] = chkestilo.isSelected();
         filtros[2] = chkmarca.isSelected();
@@ -75,32 +97,31 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     }
 
     private void establecerDatos() {
+        vehiculo = new Vehiculos();
         if (chkano.isSelected()) {
-            this.vehiculo.setAño(txtano.getText());
+            vehiculo.setAño(txtano.getText());
         }
         if (chkestilo.isSelected()) {
-            this.estilo = new Estilo(0, (String) cmbestilo.getSelectedItem());
+            vehiculo.setCodigo_estilo(0);
         }
         if (chkmarca.isSelected()) {
-            this.marca = new Marca(0, (String) cmbmarca.getSelectedItem());
+            vehiculo.setCodigo_marca(0);
         }
         if (chkmodelo.isSelected()) {
-            this.modelo = new Modelo(0, (String) cmbmodelo.getSelectedItem());
+            vehiculo.setCodigo_modelo(0);
         }
         if (chkprecio.isSelected()) {
             try {
-                this.vehiculo.setPrecio(Double.parseDouble(txtprecio.getText()));
+                vehiculo.setPrecio(Double.parseDouble(txtprecio.getText()));
             } catch (NumberFormatException ex) {
                 filtros[4] = false;
                 txtprecio.setText("");
+                chkprecio.setSelected(false);
             }
         }
         if (chktrasmision.isSelected()) {
             this.vehiculo.setTransmision_vehiculo((String) cmbtransmis.getSelectedItem());
         }
-        vehiculo.setCodigo_marca(marca.getCodigo_marca());
-        vehiculo.setCodigo_estilo(estilo.getCodigo_estilo());
-        vehiculo.setCodigo_modelo(modelo.getCodigo_modelo());
     }
 
     @SuppressWarnings("unchecked")
@@ -278,7 +299,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnbuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbuscarMouseClicked
-        
+        mostrarVehiculos();
     }//GEN-LAST:event_btnbuscarMouseClicked
 
     private void lbllogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbllogoutMouseEntered

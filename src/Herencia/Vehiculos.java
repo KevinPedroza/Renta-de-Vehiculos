@@ -5,7 +5,10 @@
  */
 package Herencia;
 
+import Procedimientos.Conexion;
 import java.io.File;
+import java.util.LinkedList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -108,6 +111,51 @@ public class Vehiculos {
 
     public void setEstado(String Estado) {
         this.Estado = Estado;
+    }
+    
+    ImageIcon imagen = new ImageIcon();
+
+    public void setImagen(ImageIcon imagen) {
+        this.imagen = imagen;
+    }
+
+    public ImageIcon getImagen() {
+        return imagen;
+    }
+    
+    public LinkedList<Vehiculos> buscar(boolean[] filtros) {
+        Conexion c = new Conexion();
+        c.conectar();
+        String sql = "SELECT placa, ma.nombre, mo.nombre, es.nombre, transmision, ano, precio, foto "
+                + "FROM public.vehiculo AS ve "
+                + "JOIN marcas AS ma ON ve.id_marca = ma.id_marca "
+                + "JOIN modelo AS mo ON ve.id_modelo = mo.id_modelo "
+                + "JOIN estilo AS es ON ve.id_estilo = es.id_estilo "
+                + "WHERE estado = 'Disponible'";
+        String consulta = "";
+        if (filtros[0]) {
+            consulta += " OR ano >= '" + Año + "'";
+        }
+        if (filtros[1]) {
+            consulta += " OR ve.id_estilo = '" + Codigo_estilo + "'";
+        }
+        if (filtros[2]) {
+            consulta += " OR ve.id_marca = '" + Codigo_marca + "'";
+        }
+        if (filtros[3]) {
+            consulta += " OR ve.id_modelo = '" + Codigo_modelo + "'";
+        }
+        if (filtros[4]) {
+            consulta += " OR precio <= '" + Precio + "'";
+        }
+        if (filtros[5]) {
+            consulta += " OR transmision = '" + Transmision_vehiculo + "'";
+        }
+        if (!"".equals(consulta)) {
+            sql += " AND (" + consulta.substring(4) + ")";
+        }
+        LinkedList<Vehiculos> lista = c.buscarVehiculos(sql);
+        return lista;
     }
 
 }
