@@ -24,19 +24,18 @@ public class ListaVehiculos extends JLabel implements ListCellRenderer {
             setText(texto);
             Image image = vehiculo.getImagen().getImage().getScaledInstance(100, 80, Image.SCALE_DEFAULT);
             setIcon(new ImageIcon(image));
-            if (isSelected) {
-                setBackground(list.getSelectionBackground());
-                setForeground(list.getSelectionForeground());
-            } else {
-                setBackground(list.getBackground());
-                setForeground(list.getForeground());
-            }
-            setEnabled(list.isEnabled());
-            setFont(list.getFont());
-            setOpaque(true);
-        } else {
-            System.out.println("No se agregó un vehiculo a la lista!!!");
+
         }
+        if (isSelected) {
+            setBackground(list.getSelectionBackground().brighter());
+            setForeground(list.getSelectionForeground());
+        } else {
+            setBackground(list.getBackground().darker());
+            setForeground(list.getForeground());
+        }
+        setEnabled(list.isEnabled());
+        setFont(list.getFont());
+        setOpaque(true);
         return this;
     }
 
@@ -51,5 +50,4 @@ public class ListaVehiculos extends JLabel implements ListCellRenderer {
 //        }
 //        return modelo;
 //    }
-
 }

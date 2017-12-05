@@ -36,139 +36,139 @@ import javax.swing.JFrame;
  * @author Kevin
  */
 public class Instancias extends JFrame {
-    
+
     public void MarcaCRUD() {
         Marca_CRUD marca = new Marca_CRUD(this, true);
         marca.pack();
         marca.setVisible(true);
     }
-    
+
     public void MenuCRUD() {
         MenúAdmi menu = new MenúAdmi(this, true);
         menu.pack();
         menu.setVisible(true);
     }
-    
+
     public void Login() {
         Login login = new Login(this, true);
         login.pack();
         login.setVisible(true);
     }
-    
+
     public void buscarVehiculo(Usuario usuario) {
         BuscarVehiculo b = new BuscarVehiculo(usuario);
         b.setVisible(true);
     }
-    
+
     public void Insertarmarca() {
         Insertar_marca marca = new Insertar_marca(this, true);
         marca.pack();
         marca.setVisible(true);
-        
+
     }
-    
+
     public void modificarMarca() {
         Modificar_marca marca = new Modificar_marca(this, true);
         marca.pack();
         marca.setVisible(true);
     }
-    
+
     public void menuEstilos() {
         Estilo_CRUD estilo = new Estilo_CRUD(this, true);
         estilo.pack();
         estilo.setVisible(true);
-        
+
     }
-    
+
     public void insertarEstilo() {
         Insertar_estilo estilo = new Insertar_estilo(this, true);
         estilo.pack();
         estilo.setVisible(true);
-        
+
     }
-    
+
     public void eliminarEstilo() {
         Eliminar_estilo estilo = new Eliminar_estilo(this, true);
         estilo.pack();
         estilo.setVisible(true);
-        
+
     }
-    
+
     public void modificarEstilo() {
         Modificar_Estilo estilo = new Modificar_Estilo(this, true);
         estilo.pack();
         estilo.setVisible(true);
-        
+
     }
-    
+
     public void menuModelo() {
         Modelo_CRUD menu = new Modelo_CRUD(this, true);
         menu.pack();
         menu.setVisible(true);
     }
-    
+
     public void insertarModelo() {
         Insertar_modelo modelo = new Insertar_modelo(this, true);
         modelo.pack();
         modelo.setVisible(true);
     }
-    
+
     public void eliminarModelo() {
         Eliminar_modelo modelo = new Eliminar_modelo(this, true);
         modelo.pack();
         modelo.setVisible(true);
-        
+
     }
-    
+
     public void modificarModelo() {
         Modificar_modelo modelo = new Modificar_modelo(this, true);
         modelo.pack();
         modelo.setVisible(true);
     }
-    
+
     public void menuOficina() {
         Oficina_CRUD oficina = new Oficina_CRUD(this, true);
         oficina.pack();
         oficina.setVisible(true);
-        
+
     }
-    
+
     public void insertarOficina() {
         Insertar_oficina oficina = new Insertar_oficina(this, true);
         oficina.pack();
         oficina.setVisible(true);
     }
-    
+
     public void eliminarOficina() {
         Eliminar_oficina oficina = new Eliminar_oficina(this, true);
         oficina.pack();
         oficina.setVisible(true);
     }
-    
+
     public void moficiarOficina() {
         Modifica_oficina oficina = new Modifica_oficina(this, true);
         oficina.pack();
         oficina.setVisible(true);
     }
-    
+
     public void menuVehiculos() {
         Vehiculo_CRUD vehiculo = new Vehiculo_CRUD(this, true);
         vehiculo.pack();
         vehiculo.setVisible(true);
     }
-    
+
     public void insertarVehiculo() {
         Insertar_vehiculo vehiculo = new Insertar_vehiculo(this, true);
         vehiculo.pack();
         vehiculo.setVisible(true);
     }
-    
+
     public void eliminarVehiculo() {
         Eliminar_vehiculo vehi = new Eliminar_vehiculo(this, true);
         vehi.pack();
         vehi.setVisible(true);
     }
-    
+
     public void modificarVehiculo() {
         Modificar_vehiculo vehi = new Modificar_vehiculo(this, true);
         vehi.pack();

@@ -112,7 +112,7 @@ public class Vehiculos {
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }
-    
+
     ImageIcon imagen = new ImageIcon();
 
     public void setImagen(ImageIcon imagen) {
@@ -122,7 +122,13 @@ public class Vehiculos {
     public ImageIcon getImagen() {
         return imagen;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Número de Placa: " + this.Placa_vehiculo;
+
+    }
+
     public LinkedList<Vehiculos> buscar(boolean[] filtros) {
         Conexion c = new Conexion();
         c.conectar();
@@ -131,28 +137,28 @@ public class Vehiculos {
                 + "JOIN marcas AS ma ON ve.id_marca = ma.id_marca "
                 + "JOIN modelo AS mo ON ve.id_modelo = mo.id_modelo "
                 + "JOIN estilo AS es ON ve.id_estilo = es.id_estilo "
-                + "WHERE estado = 'Disponible'";
+                + "WHERE ve.estado = 'Disponible'";
         String consulta = "";
         if (filtros[0]) {
-            consulta += " OR ano >= '" + Año + "'";
+            consulta += " AND ve.ano >= '" + Año + "'";
         }
         if (filtros[1]) {
-            consulta += " OR ve.id_estilo = '" + Codigo_estilo + "'";
+            consulta += " AND ve.id_estilo = '" + Codigo_estilo + "'";
         }
         if (filtros[2]) {
-            consulta += " OR ve.id_marca = '" + Codigo_marca + "'";
+            consulta += " AND ve.id_marca = '" + Codigo_marca + "'";
         }
         if (filtros[3]) {
-            consulta += " OR ve.id_modelo = '" + Codigo_modelo + "'";
+            consulta += " AND ve.id_modelo = '" + Codigo_modelo + "'";
         }
         if (filtros[4]) {
-            consulta += " OR precio <= '" + Precio + "'";
+            consulta += " AND ve.precio <= '" + Precio + "'";
         }
         if (filtros[5]) {
-            consulta += " OR transmision = '" + Transmision_vehiculo + "'";
+            consulta += " AND ve.transmision = '" + Transmision_vehiculo + "'";
         }
         if (!"".equals(consulta)) {
-            sql += " AND (" + consulta.substring(4) + ")";
+            sql += " AND " + consulta.substring(4) + "";
         }
         LinkedList<Vehiculos> lista = c.buscarVehiculos(sql);
         return lista;

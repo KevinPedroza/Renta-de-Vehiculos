@@ -8,10 +8,13 @@ import Herencia.Vehiculos;
 import Procedimientos.CRUD_vehiculos;
 import Procedimientos.ListaVehiculos;
 import java.awt.Color;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,28 +36,28 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         listModel = new DefaultListModel();
         lista.setModel(listModel);
-        lv = new ListaVehiculos();
-        lista.setCellRenderer(lv);
+        lista.setCellRenderer(new ListaVehiculos());
         mostrarVehiculos();
         llenarCombos();
+
     }
-    
+
     public BuscarVehiculo(Usuario usuario) {
         initComponents();
         setLocationRelativeTo(null);
         listModel = new DefaultListModel();
         lista.setModel(listModel);
-        lv = new ListaVehiculos();
-        lista.setCellRenderer(lv);
+        lista.setCellRenderer(new ListaVehiculos());
         mostrarVehiculos();
         llenarCombos();
+
     }
 
     private void llenarCombos() {
         CRUD_vehiculos v = new CRUD_vehiculos();
-        DefaultComboBoxModel model1 = new DefaultComboBoxModel();
-        DefaultComboBoxModel model2 = new DefaultComboBoxModel();
-        DefaultComboBoxModel model3 = new DefaultComboBoxModel();
+        DefaultComboBoxModel<Marca> model1 = new DefaultComboBoxModel<Marca>();
+        DefaultComboBoxModel<Estilo> model2 = new DefaultComboBoxModel<Estilo>();
+        DefaultComboBoxModel<Modelo> model3 = new DefaultComboBoxModel<Modelo>();
 
         ArrayList<Marca> marcas = v.obtenerMarca();
         for (int i = 0; i < marcas.size(); i++) {
@@ -74,7 +77,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         }
         cmbmodelo.setModel(model3);
     }
-    
+
     private void mostrarVehiculos() {
         filtro();
         establecerDatos();
@@ -84,6 +87,9 @@ public class BuscarVehiculo extends javax.swing.JFrame {
             for (int i = 0; i < vehiculos.size(); i++) {
                 listModel.addElement(vehiculos.get(i));
             }
+        }
+        if (listModel.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se ha encontrado algún Resultado con esos Filtros!");
         }
     }
 
@@ -98,17 +104,20 @@ public class BuscarVehiculo extends javax.swing.JFrame {
 
     private void establecerDatos() {
         vehiculo = new Vehiculos();
+        Estilo estilo = (Estilo) cmbestilo.getSelectedItem();
+        Marca marca = (Marca) cmbmarca.getSelectedItem();
+        Modelo modelo = (Modelo) cmbmodelo.getSelectedItem();
         if (chkano.isSelected()) {
             vehiculo.setAño(txtano.getText());
         }
         if (chkestilo.isSelected()) {
-            vehiculo.setCodigo_estilo(0);
+            vehiculo.setCodigo_estilo(estilo.getCodigo_estilo());
         }
         if (chkmarca.isSelected()) {
-            vehiculo.setCodigo_marca(0);
+            vehiculo.setCodigo_marca(marca.getCodigo_marca());
         }
         if (chkmodelo.isSelected()) {
-            vehiculo.setCodigo_modelo(0);
+            vehiculo.setCodigo_modelo(modelo.getCodigo_modelo());
         }
         if (chkprecio.isSelected()) {
             try {
@@ -173,6 +182,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         txtprecio.setFont(new java.awt.Font("Sitka Text", 0, 11)); // NOI18N
 
         btnbuscar.setFont(new java.awt.Font("Sitka Text", 0, 11)); // NOI18N
+        btnbuscar.setText("Buscar");
         btnbuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnbuscarMouseClicked(evt);
@@ -190,7 +200,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
 
         cmbestilo.setEditable(true);
 
-        cmbtransmis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Automático" }));
+        cmbtransmis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Autómatico" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -210,9 +220,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(chkprecio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnbuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                        .addComponent(txtprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(chkmarca)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -224,31 +232,35 @@ public class BuscarVehiculo extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(chkestilo)
                         .addGap(18, 18, 18)
-                        .addComponent(cmbestilo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(cmbestilo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chkmarca)
-                    .addComponent(chkmodelo)
-                    .addComponent(chkestilo)
-                    .addComponent(cmbmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbmodelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbestilo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chktrasmision)
-                    .addComponent(chkano)
-                    .addComponent(chkprecio)
-                    .addComponent(txtano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbtransmis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(chkmarca)
+                            .addComponent(chkmodelo)
+                            .addComponent(chkestilo)
+                            .addComponent(cmbmarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbmodelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbestilo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(chktrasmision)
+                            .addComponent(chkano)
+                            .addComponent(chkprecio)
+                            .addComponent(txtano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtprecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbtransmis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnbuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         lbllogout.setFont(new java.awt.Font("Sitka Text", 1, 12)); // NOI18N
@@ -266,6 +278,11 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         });
 
         lista.setFont(new java.awt.Font("Sitka Text", 1, 12)); // NOI18N
+        lista.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(lista);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -300,6 +317,12 @@ public class BuscarVehiculo extends javax.swing.JFrame {
 
     private void btnbuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbuscarMouseClicked
         mostrarVehiculos();
+        chkmodelo.setSelected(false);
+        chkmarca.setSelected(false);
+        chkestilo.setSelected(false);
+        chkprecio.setSelected(false);
+        chktrasmision.setSelected(false);
+        chkano.setSelected(false);
     }//GEN-LAST:event_btnbuscarMouseClicked
 
     private void lbllogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbllogoutMouseEntered
@@ -321,6 +344,10 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnbuscarActionPerformed
 
+    private void listaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaValueChanged
+        JOptionPane.showMessageDialog(null, lista.getSelectedValue());
+    }//GEN-LAST:event_listaValueChanged
+
     /**
      * @param args the command line arguments
      */
@@ -328,7 +355,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -365,9 +392,9 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkmodelo;
     private javax.swing.JCheckBox chkprecio;
     private javax.swing.JCheckBox chktrasmision;
-    private javax.swing.JComboBox<String> cmbestilo;
-    private javax.swing.JComboBox<String> cmbmarca;
-    private javax.swing.JComboBox<String> cmbmodelo;
+    private javax.swing.JComboBox<Estilo> cmbestilo;
+    private javax.swing.JComboBox<Marca> cmbmarca;
+    private javax.swing.JComboBox<Modelo> cmbmodelo;
     private javax.swing.JComboBox<String> cmbtransmis;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;

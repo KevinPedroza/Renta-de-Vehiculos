@@ -30,7 +30,7 @@ public class Conexion {
             return;
         }
         String url = "jdbc:postgresql://localhost:5432/renta_de_vehiculos";
-        String password = "postgres123";
+        String password = "kevin";
         try {
             Class.forName("org.postgresql.Driver");
             conexion = DriverManager.getConnection(url, "postgres", password);
@@ -43,7 +43,7 @@ public class Conexion {
         LinkedList<Vehiculos> list = new LinkedList();
         Vehiculos v;
         try {
-            System.out.println(sql);
+            
             s = conexion.createStatement();
             rs = s.executeQuery(sql);
             while (rs.next()) {
