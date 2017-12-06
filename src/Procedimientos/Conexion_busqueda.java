@@ -85,4 +85,26 @@ public class Conexion_busqueda {
         }
         return res;
     }
+    
+    public boolean insertar(String sql) {
+        conectar();
+        try {
+            s = conexion.createStatement();
+            int res = s.executeUpdate(sql);
+            return res == 1;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+    
+    public boolean update(String sql) {
+        conectar();
+        try {
+            s = conexion.createStatement();
+            int res = s.executeUpdate(sql);
+            return res == 1;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
 }

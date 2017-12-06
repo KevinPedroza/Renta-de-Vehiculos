@@ -13,6 +13,10 @@ import Herencia.Oficina;
 import Procedimientos.Rentar;
 import Herencia.Usuario;
 import Herencia.Vehiculos;
+import java.awt.ItemSelectable;
+import java.awt.event.ItemEvent;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,34 +27,47 @@ public class RentarVehiculo extends javax.swing.JFrame {
     Usuario usuario;
     Vehiculos vehiculo;
     Rentar r;
-    
+
     /**
      * Creates new form RentarVehiculo
      */
     public RentarVehiculo() {
         initComponents();
         setLocationRelativeTo(null);
-        vehiculo = new Vehiculos("AA0-01", 0, 0, 0, "Automático", "2015", 1000000, new File("C:/Users/DELL/Pictures/Saved Pictures/carro3.jpg"), "Disponible");
+        vehiculo = new Vehiculos("AA0-01", 0, 0, 0, "Automático", "2015", 200, new File("C:/Users/DELL/Pictures/Saved Pictures/carro3.jpg"), "Disponible");
         usuario = new Usuario("207770677", "Carol", "86889251", "Gamonales", "2103", "c", null);
         r = new Rentar(vehiculo.getPlaca_vehiculo(), usuario.getCedula(), usuario.getNombre(), vehiculo.getPrecio());
+        dtretiro.setMinSelectableDate(new Date());
+        dtdevolucion.setMinSelectableDate(new Date());
         buscarOficinas();
         llenarDatos();
     }
-    
+
     private void buscarOficinas() {
         CRUD_oficina c = new CRUD_oficina();
         ArrayList<Oficina> oficinas = c.obtenerOficina();
-        DefaultComboBoxModel model = new DefaultComboBoxModel();
-        cmboficinadev.setModel(model);
-        cmboficinaret.setModel(model);
+        DefaultComboBoxModel model1 = new DefaultComboBoxModel();
+        cmboficinadev.setModel(model1);
+        DefaultComboBoxModel model2 = new DefaultComboBoxModel();
+        cmboficinaret.setModel(model2);
         for (int i = 0; i < oficinas.size(); i++) {
-            model.addElement(oficinas.get(i).getNombre_oficina());
+            model1.addElement(oficinas.get(i).getNombre_oficina());
+            model2.addElement(oficinas.get(i).getNombre_oficina());
         }
     }
-    
+
+    private void actualizarPrecioTotal() {
+        int dif = r.diferenciaDeDias();
+        if (dif >= 0) {
+            double total = ((dif + 1) * vehiculo.getPrecio()) + r.getGps() + r.getBooster() + r.getSilla();
+            r.setPrecio_total(total);
+            lbltotal.setText("Total: $" + r.getPrecio_total());
+        }
+    }
+
     private void llenarDatos() {
         Conexion_busqueda c = new Conexion_busqueda();
-        String info1="", sql, res;
+        String info1 = "", sql, res;
         sql = "SELECT nombre FROM marcas WHERE id_marca = " + vehiculo.getCodigo_marca();
         res = c.buscar(sql);
         if (res != null) {
@@ -68,8 +85,9 @@ public class RentarVehiculo extends javax.swing.JFrame {
         }
         lblplaca.setText("Placa: " + vehiculo.getPlaca_vehiculo());
         lblinfo1.setText(info1);
-        lbltransmision.setText("Transmisión: "+vehiculo.getTransmision_vehiculo());
+        lbltransmision.setText("Transmisión: " + vehiculo.getTransmision_vehiculo());
         lblprecio.setText("Precio: $" + vehiculo.getPrecio());
+        actualizarPrecioTotal();
         try {
             Image img = ImageIO.read(vehiculo.getFoto()).getScaledInstance(lblfoto.getWidth(), lblfoto.getHeight(), Image.SCALE_DEFAULT);
             lblfoto.setIcon(new ImageIcon(img));
@@ -87,18 +105,18 @@ public class RentarVehiculo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cmbhoradev = new javax.swing.JComboBox<>();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        dtdevolucion = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         cmboficinaret = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         cmbhoraret = new javax.swing.JComboBox<>();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        dtretiro = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        chkGPS = new javax.swing.JCheckBox();
+        chkBooster = new javax.swing.JCheckBox();
+        chkSilla = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
         lblfoto = new javax.swing.JLabel();
         lbltotal = new javax.swing.JLabel();
@@ -125,6 +143,12 @@ public class RentarVehiculo extends javax.swing.JFrame {
         cmbhoradev.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30" }));
         cmbhoradev.setSelectedIndex(22);
 
+        dtdevolucion.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dtdevolucionPropertyChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -137,7 +161,7 @@ public class RentarVehiculo extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dtdevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
@@ -155,7 +179,7 @@ public class RentarVehiculo extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addComponent(jLabel3)
                         .addComponent(cmbhoradev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dtdevolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -173,6 +197,13 @@ public class RentarVehiculo extends javax.swing.JFrame {
         cmbhoraret.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30" }));
         cmbhoraret.setSelectedIndex(22);
 
+        dtretiro.setMinSelectableDate(new java.util.Date(1512543678000L));
+        dtretiro.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                dtretiroPropertyChange(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -185,7 +216,7 @@ public class RentarVehiculo extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
-                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dtretiro, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
@@ -197,7 +228,7 @@ public class RentarVehiculo extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dtretiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
                         .addComponent(cmboficinaret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,14 +240,29 @@ public class RentarVehiculo extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Adicionar artículos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Sitka Text", 1, 12))); // NOI18N
 
-        jCheckBox1.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
-        jCheckBox1.setText("GPS");
+        chkGPS.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        chkGPS.setText("GPS");
+        chkGPS.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chkGPSItemStateChanged(evt);
+            }
+        });
 
-        jCheckBox2.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
-        jCheckBox2.setText("Booster");
+        chkBooster.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        chkBooster.setText("Booster");
+        chkBooster.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chkBoosterItemStateChanged(evt);
+            }
+        });
 
-        jCheckBox3.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
-        jCheckBox3.setText("Silla de bebé");
+        chkSilla.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
+        chkSilla.setText("Silla de bebé");
+        chkSilla.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chkSillaItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -225,20 +271,20 @@ public class RentarVehiculo extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3))
+                    .addComponent(chkGPS)
+                    .addComponent(chkBooster)
+                    .addComponent(chkSilla))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jCheckBox1)
+                .addComponent(chkGPS)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox2)
+                .addComponent(chkBooster)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox3)
+                .addComponent(chkSilla)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -306,6 +352,11 @@ public class RentarVehiculo extends javax.swing.JFrame {
 
         btnrentar.setFont(new java.awt.Font("Sitka Text", 1, 12)); // NOI18N
         btnrentar.setText("Rentar");
+        btnrentar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnrentarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -348,6 +399,83 @@ public class RentarVehiculo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnrentarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnrentarMouseClicked
+        r.setOficinaret((String) cmboficinaret.getSelectedItem());
+        r.setOficinadev((String) cmboficinadev.getSelectedItem());
+        r.setHoraret((String) cmbhoraret.getSelectedItem());
+        r.setHoradev((String) cmbhoradev.getSelectedItem());
+        boolean res = r.registrar();
+        if (res) {
+            JOptionPane.showMessageDialog(null, "Gracias por alquilar");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se puede registrar la renta del vehículo");
+        }
+    }//GEN-LAST:event_btnrentarMouseClicked
+
+    private void dtretiroPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dtretiroPropertyChange
+        try {
+            String[] fecha = dtretiro.getDate().toString().split(" ");
+            int mes = dtretiro.getDate().getMonth() + 1;
+            String fecharet = fecha[2] + "/" + String.format("%02d", mes) + "/" + fecha[5];
+            r.setFecharet(fecharet);
+            chkGPSItemStateChanged(new ItemEvent((ItemSelectable) chkGPS, 1, 1, 1));
+            chkBoosterItemStateChanged(new ItemEvent((ItemSelectable) chkBooster, 1, 1, 1));
+            chkSillaItemStateChanged(new ItemEvent((ItemSelectable) chkSilla, 1, 1, 1));
+        } catch (Exception e) {
+            dtretiro.setDate(new Date());
+        }
+    }//GEN-LAST:event_dtretiroPropertyChange
+
+    private void dtdevolucionPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_dtdevolucionPropertyChange
+        try {
+            String[] fecha = dtdevolucion.getDate().toString().split(" ");
+            int mes = dtdevolucion.getDate().getMonth() + 1;
+            String fechadev = fecha[2] + "/" + String.format("%02d", mes) + "/" + fecha[5];
+            r.setFechadev(fechadev);
+            chkGPSItemStateChanged(new ItemEvent((ItemSelectable) chkGPS, 1, 1, 1));
+            chkBoosterItemStateChanged(new ItemEvent((ItemSelectable) chkBooster, 1, 1, 1));
+            chkSillaItemStateChanged(new ItemEvent((ItemSelectable) chkSilla, 1, 1, 1));
+        } catch (Exception e) {
+            dtdevolucion.setDate(new Date());
+        }
+    }//GEN-LAST:event_dtdevolucionPropertyChange
+
+    private void chkGPSItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkGPSItemStateChanged
+        if (chkGPS.isSelected()) {
+            int dif = r.diferenciaDeDias();
+            if (dif >= 0) {
+                r.setGps((dif + 1) * 9);
+            }
+        } else {
+            r.setGps(0);
+        }
+        actualizarPrecioTotal();
+    }//GEN-LAST:event_chkGPSItemStateChanged
+
+    private void chkBoosterItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkBoosterItemStateChanged
+        if (chkBooster.isSelected()) {
+            int dif = r.diferenciaDeDias();
+            if (dif >= 0) {
+                r.setBooster((dif + 1) * 11);
+            }
+        } else {
+            r.setBooster(0);
+        }
+        actualizarPrecioTotal();
+    }//GEN-LAST:event_chkBoosterItemStateChanged
+
+    private void chkSillaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkSillaItemStateChanged
+        if (chkSilla.isSelected()) {
+            int dif = r.diferenciaDeDias();
+            if (dif >= 0) {
+                r.setSilla((dif + 1) * 3);
+            }
+        } else {
+            r.setSilla(0);
+        }
+        actualizarPrecioTotal();
+    }//GEN-LAST:event_chkSillaItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -385,15 +513,15 @@ public class RentarVehiculo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnatras;
     private javax.swing.JButton btnrentar;
+    private javax.swing.JCheckBox chkBooster;
+    private javax.swing.JCheckBox chkGPS;
+    private javax.swing.JCheckBox chkSilla;
     private javax.swing.JComboBox<String> cmbhoradev;
     private javax.swing.JComboBox<String> cmbhoraret;
     private javax.swing.JComboBox<String> cmboficinadev;
     private javax.swing.JComboBox<String> cmboficinaret;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser dtdevolucion;
+    private com.toedter.calendar.JDateChooser dtretiro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
