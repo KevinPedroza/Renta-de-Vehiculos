@@ -90,6 +90,11 @@ public class MenúAdmi extends javax.swing.JDialog {
 
         jButton6.setFont(new java.awt.Font("Sitka Text", 3, 14)); // NOI18N
         jButton6.setText("Reportes");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -165,6 +170,11 @@ public class MenúAdmi extends javax.swing.JDialog {
         this.dispose();
         instancias.menuOficina();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        this.dispose();
+        instancias.reportes();
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

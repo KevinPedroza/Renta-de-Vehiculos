@@ -28,6 +28,8 @@ import Interfaces.Modificar_marca;
 import Interfaces.Modificar_modelo;
 import Interfaces.Modificar_vehiculo;
 import Interfaces.Oficina_CRUD;
+import Interfaces.Reporte_1;
+import Interfaces.Reportes_interfaz;
 import Interfaces.Vehiculo_CRUD;
 import javax.swing.JFrame;
 
@@ -173,5 +175,17 @@ public class Instancias extends JFrame {
         Modificar_vehiculo vehi = new Modificar_vehiculo(this, true);
         vehi.pack();
         vehi.setVisible(true);
+    }
+
+    public void reportes() {
+        Reportes_interfaz reportes = new Reportes_interfaz(this, true);
+        reportes.pack();
+        reportes.setVisible(true);
+    }
+    public void reporte1(){
+        Reporte_1 reporte = new Reporte_1(this,true);
+        reporte.pack();
+        reporte.setVisible(true);
+    
     }
 }

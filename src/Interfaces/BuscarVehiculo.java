@@ -154,6 +154,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         lbllogout = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         lista = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -285,6 +286,14 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(lista);
 
+        jButton1.setFont(new java.awt.Font("Sitka Text", 3, 12)); // NOI18N
+        jButton1.setText("Atrás");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -296,7 +305,9 @@ public class BuscarVehiculo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(lbllogout, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
@@ -308,8 +319,12 @@ public class BuscarVehiculo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbllogout)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbllogout)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -347,6 +362,10 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     private void listaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaValueChanged
         JOptionPane.showMessageDialog(null, lista.getSelectedValue());
     }//GEN-LAST:event_listaValueChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Aqui la parte de renta de un vehiculo
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -396,6 +415,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     private javax.swing.JComboBox<Marca> cmbmarca;
     private javax.swing.JComboBox<Modelo> cmbmodelo;
     private javax.swing.JComboBox<String> cmbtransmis;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbllogout;

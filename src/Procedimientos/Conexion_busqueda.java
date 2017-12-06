@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
  *
  * @author Carol
  */
-public class Conexion {
+public class Conexion_busqueda {
     
     private Connection conexion = null;
     private Statement s = null;

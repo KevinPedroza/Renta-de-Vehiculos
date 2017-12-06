@@ -5,7 +5,7 @@
  */
 package Herencia;
 
-import Procedimientos.Conexion;
+import Procedimientos.Conexion_busqueda;
 import java.io.File;
 import java.util.LinkedList;
 import javax.swing.ImageIcon;
@@ -130,7 +130,7 @@ public class Vehiculos {
     }
 
     public LinkedList<Vehiculos> buscar(boolean[] filtros) {
-        Conexion c = new Conexion();
+        Conexion_busqueda c = new Conexion_busqueda();
         c.conectar();
         String sql = "SELECT placa, ma.nombre, mo.nombre, es.nombre, transmision, ano, precio, foto "
                 + "FROM public.vehiculo AS ve "
@@ -140,7 +140,7 @@ public class Vehiculos {
                 + "WHERE ve.estado = 'Disponible'";
         String consulta = "";
         if (filtros[0]) {
-            consulta += " AND ve.ano >= '" + Año + "'";
+            consulta += " AND ano >= '" + Año + "'";
         }
         if (filtros[1]) {
             consulta += " AND ve.id_estilo = '" + Codigo_estilo + "'";
@@ -152,13 +152,13 @@ public class Vehiculos {
             consulta += " AND ve.id_modelo = '" + Codigo_modelo + "'";
         }
         if (filtros[4]) {
-            consulta += " AND ve.precio <= '" + Precio + "'";
+            consulta += " AND precio <= '" + Precio + "'";
         }
         if (filtros[5]) {
-            consulta += " AND ve.transmision = '" + Transmision_vehiculo + "'";
+            consulta += " AND transmision = '" + Transmision_vehiculo + "'";
         }
         if (!"".equals(consulta)) {
-            sql += " AND " + consulta.substring(4) + "";
+            sql += consulta;
         }
         LinkedList<Vehiculos> lista = c.buscarVehiculos(sql);
         return lista;
