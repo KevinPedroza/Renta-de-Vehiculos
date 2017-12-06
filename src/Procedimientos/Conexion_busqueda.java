@@ -30,7 +30,7 @@ public class Conexion_busqueda {
             return;
         }
         String url = "jdbc:postgresql://localhost:5432/renta_de_vehiculos";
-        String password = "kevin";
+        String password = "postgres123";
         try {
             Class.forName("org.postgresql.Driver");
             conexion = DriverManager.getConnection(url, "postgres", password);
@@ -69,5 +69,20 @@ public class Conexion_busqueda {
             return null;
         }
         return list;
+    }
+    
+    public String buscar(String sql) {
+        conectar();
+        String res = "";
+        try {
+            s = conexion.createStatement();
+            rs = s.executeQuery(sql);
+            while (rs.next()) {
+                res = rs.getString(1);
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+        return res;
     }
 }
