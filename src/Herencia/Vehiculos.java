@@ -132,24 +132,20 @@ public class Vehiculos {
     public LinkedList<Vehiculos> buscar(boolean[] filtros) {
         Conexion_busqueda c = new Conexion_busqueda();
         c.conectar();
-        String sql = "SELECT placa, ma.nombre, mo.nombre, es.nombre, transmision, ano, precio, foto "
-                + "FROM public.vehiculo AS ve "
-                + "JOIN marcas AS ma ON ve.id_marca = ma.id_marca "
-                + "JOIN modelo AS mo ON ve.id_modelo = mo.id_modelo "
-                + "JOIN estilo AS es ON ve.id_estilo = es.id_estilo "
-                + "WHERE ve.estado = 'Disponible'";
+        String sql = "SELECT placa, id_marca, id_modelo, id_estilo, transmision, ano, precio, foto "
+                + "FROM vehiculo WHERE estado = 'Disponible'";
         String consulta = "";
         if (filtros[0]) {
             consulta += " AND ano >= '" + Año + "'";
         }
         if (filtros[1]) {
-            consulta += " AND ve.id_estilo = '" + Codigo_estilo + "'";
+            consulta += " AND id_estilo = '" + Codigo_estilo + "'";
         }
         if (filtros[2]) {
-            consulta += " AND ve.id_marca = '" + Codigo_marca + "'";
+            consulta += " AND id_marca = '" + Codigo_marca + "'";
         }
         if (filtros[3]) {
-            consulta += " AND ve.id_modelo = '" + Codigo_modelo + "'";
+            consulta += " AND id_modelo = '" + Codigo_modelo + "'";
         }
         if (filtros[4]) {
             consulta += " AND precio <= '" + Precio + "'";

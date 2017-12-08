@@ -8,12 +8,10 @@ import Herencia.Vehiculos;
 import Procedimientos.CRUD_vehiculos;
 import Procedimientos.ListaVehiculos;
 import java.awt.Color;
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,7 +22,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
 
     boolean[] filtros = new boolean[6];
     DefaultListModel listModel;
-    ListaVehiculos lv;
+    LinkedList<Vehiculos> vehiculos;
     Vehiculos vehiculo;
     Usuario usuario;
 
@@ -50,7 +48,8 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         lista.setCellRenderer(new ListaVehiculos());
         mostrarVehiculos();
         llenarCombos();
-
+        this.usuario = usuario;
+        System.out.println(this.usuario);
     }
 
     private void llenarCombos() {
@@ -81,7 +80,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     private void mostrarVehiculos() {
         filtro();
         establecerDatos();
-        LinkedList<Vehiculos> vehiculos = vehiculo.buscar(filtros);
+        vehiculos = vehiculo.buscar(filtros);
         listModel.removeAllElements();
         if (vehiculos != null) {
             for (int i = 0; i < vehiculos.size(); i++) {
@@ -187,11 +186,6 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         btnbuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnbuscarMouseClicked(evt);
-            }
-        });
-        btnbuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnbuscarActionPerformed(evt);
             }
         });
 
@@ -355,12 +349,13 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         l.setVisible(true);
     }//GEN-LAST:event_lbllogoutMouseClicked
 
-    private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnbuscarActionPerformed
-
     private void listaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaValueChanged
         JOptionPane.showMessageDialog(null, lista.getSelectedValue());
+        int i = lista.getSelectedIndex();
+        Vehiculos vv = vehiculos.get(i);
+        RentarVehiculo renta = new RentarVehiculo(usuario, vv);
+        renta.setVisible(true);
+        dispose();
     }//GEN-LAST:event_listaValueChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

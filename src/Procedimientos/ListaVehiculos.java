@@ -3,8 +3,6 @@ package Procedimientos;
 import Herencia.Vehiculos;
 import java.awt.Component;
 import java.awt.Image;
-import java.util.LinkedList;
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -16,11 +14,16 @@ import javax.swing.ListCellRenderer;
  */
 public class ListaVehiculos extends JLabel implements ListCellRenderer {
 
+    Conexion_busqueda c = new Conexion_busqueda();
+    
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
         if (value instanceof Vehiculos) {
             Vehiculos vehiculo = (Vehiculos) value;
-            String texto = vehiculo.getPlaca_vehiculo();
+            String texto = c.buscar("SELECT nombre FROM marcas WHERE id_marca='" + vehiculo.getCodigo_marca() + "'") + " ";
+            texto += c.buscar("SELECT nombre FROM modelo WHERE id_modelo='" + vehiculo.getCodigo_modelo() + "'") + " ";
+            texto += c.buscar("SELECT nombre FROM estilo WHERE id_estilo='" + vehiculo.getCodigo_estilo() + "'") + " ";
+            texto += vehiculo.getAño() + " " + vehiculo.getTransmision_vehiculo() + "  PLACA: " +vehiculo.getPlaca_vehiculo();
             setText(texto);
             Image image = vehiculo.getImagen().getImage().getScaledInstance(100, 80, Image.SCALE_DEFAULT);
             setIcon(new ImageIcon(image));
@@ -38,16 +41,4 @@ public class ListaVehiculos extends JLabel implements ListCellRenderer {
         setOpaque(true);
         return this;
     }
-
-//    public DefaultListModel llenarLista(JList lista, LinkedList<Vehiculos> vehiculos) {
-//        DefaultListModel modelo = new DefaultListModel();
-//        lista.setModel(modelo);
-//        for (int i = 0; i < vehiculos.size(); i++) {
-//            try {
-//                modelo.addElement(vehiculos.get(i));
-//            } catch (Exception e) {
-//            }
-//        }
-//        return modelo;
-//    }
 }

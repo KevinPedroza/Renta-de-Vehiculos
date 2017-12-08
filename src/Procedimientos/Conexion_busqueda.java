@@ -30,7 +30,7 @@ public class Conexion_busqueda {
             return;
         }
         String url = "jdbc:postgresql://localhost:5432/renta_de_vehiculos";
-        String password = "postgres123";
+        String password = "kevin";
         try {
             Class.forName("org.postgresql.Driver");
             conexion = DriverManager.getConnection(url, "postgres", password);
@@ -48,15 +48,15 @@ public class Conexion_busqueda {
             rs = s.executeQuery(sql);
             while (rs.next()) {
                 v = new Vehiculos();
-                v.setPlaca_vehiculo(rs.getString(1));
-                v.setAño(rs.getString(6));
-//                v.setCodigo_marca(rs.getInt("ma.nombre"));
-//                v.setCodigo_estilo(rs.getInt("es.nombre"));
-//                v.setCodigo_modelo(rs.getInt("mo.nombre"));
-                v.setPrecio(rs.getDouble(7));
-                v.setTransmision_vehiculo(rs.getString(5));
+                v.setPlaca_vehiculo(rs.getString("placa"));
+                v.setAño(rs.getString("ano"));
+                v.setCodigo_marca(rs.getInt("id_marca"));
+                v.setCodigo_estilo(rs.getInt("id_estilo"));
+                v.setCodigo_modelo(rs.getInt("id_modelo"));
+                v.setPrecio(rs.getDouble("precio"));
+                v.setTransmision_vehiculo(rs.getString("transmision"));
                 try {
-                    InputStream is = rs.getBinaryStream(8);
+                    InputStream is = rs.getBinaryStream("foto");
                     BufferedImage im = ImageIO.read(is);
                     v.setImagen(new ImageIcon(im));
                 } catch (SQLException | IOException ex) {

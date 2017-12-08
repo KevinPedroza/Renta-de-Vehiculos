@@ -34,8 +34,13 @@ public class RentarVehiculo extends javax.swing.JFrame {
     public RentarVehiculo() {
         initComponents();
         setLocationRelativeTo(null);
-        vehiculo = new Vehiculos("AA0-01", 0, 0, 0, "Automático", "2015", 200, new File("C:/Users/DELL/Pictures/Saved Pictures/carro3.jpg"), "Disponible");
-        usuario = new Usuario("207770677", "Carol", "86889251", "Gamonales", "2103", "c", null);
+    }
+    
+    public RentarVehiculo(Usuario usuario, Vehiculos vehiculo) {
+        initComponents();
+        setLocationRelativeTo(null);
+        this.vehiculo = vehiculo;
+        this.usuario = usuario;
         r = new Rentar(vehiculo.getPlaca_vehiculo(), usuario.getCedula(), usuario.getNombre(), vehiculo.getPrecio());
         dtretiro.setMinSelectableDate(new Date());
         dtdevolucion.setMinSelectableDate(new Date());
@@ -89,9 +94,9 @@ public class RentarVehiculo extends javax.swing.JFrame {
         lblprecio.setText("Precio: $" + vehiculo.getPrecio());
         actualizarPrecioTotal();
         try {
-            Image img = ImageIO.read(vehiculo.getFoto()).getScaledInstance(lblfoto.getWidth(), lblfoto.getHeight(), Image.SCALE_DEFAULT);
+            Image img = vehiculo.getImagen().getImage().getScaledInstance(lblfoto.getWidth(), lblfoto.getHeight(), Image.SCALE_DEFAULT);
             lblfoto.setIcon(new ImageIcon(img));
-        } catch (IOException ex) {
+        } catch (Exception ex) {
         }
     }
 
