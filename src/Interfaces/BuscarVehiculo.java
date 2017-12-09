@@ -49,14 +49,13 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         mostrarVehiculos();
         llenarCombos();
         this.usuario = usuario;
-        System.out.println(this.usuario);
     }
 
     private void llenarCombos() {
         CRUD_vehiculos v = new CRUD_vehiculos();
-        DefaultComboBoxModel<Marca> model1 = new DefaultComboBoxModel<Marca>();
-        DefaultComboBoxModel<Estilo> model2 = new DefaultComboBoxModel<Estilo>();
-        DefaultComboBoxModel<Modelo> model3 = new DefaultComboBoxModel<Modelo>();
+        DefaultComboBoxModel<Marca> model1 = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<Estilo> model2 = new DefaultComboBoxModel<>();
+        DefaultComboBoxModel<Modelo> model3 = new DefaultComboBoxModel<>();
 
         ArrayList<Marca> marcas = v.obtenerMarca();
         for (int i = 0; i < marcas.size(); i++) {
@@ -86,9 +85,6 @@ public class BuscarVehiculo extends javax.swing.JFrame {
             for (int i = 0; i < vehiculos.size(); i++) {
                 listModel.addElement(vehiculos.get(i));
             }
-        }
-        if (listModel.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No se ha encontrado algún Resultado con esos Filtros!");
         }
     }
 
@@ -195,7 +191,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
 
         cmbestilo.setEditable(true);
 
-        cmbtransmis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Autómatico" }));
+        cmbtransmis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Automático" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -332,6 +328,9 @@ public class BuscarVehiculo extends javax.swing.JFrame {
         chkprecio.setSelected(false);
         chktrasmision.setSelected(false);
         chkano.setSelected(false);
+        if (listModel.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No se ha encontrado algún Resultado con esos Filtros!");
+            }
     }//GEN-LAST:event_btnbuscarMouseClicked
 
     private void lbllogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbllogoutMouseEntered
@@ -350,7 +349,7 @@ public class BuscarVehiculo extends javax.swing.JFrame {
     }//GEN-LAST:event_lbllogoutMouseClicked
 
     private void listaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaValueChanged
-        JOptionPane.showMessageDialog(null, lista.getSelectedValue());
+        ///JOptionPane.showMessageDialog(null, lista.getSelectedValue());
         int i = lista.getSelectedIndex();
         Vehiculos vv = vehiculos.get(i);
         RentarVehiculo renta = new RentarVehiculo(usuario, vv);

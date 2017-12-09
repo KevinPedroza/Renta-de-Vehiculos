@@ -38,7 +38,7 @@ public class LoginUser {
         try {
             Class.forName("org.postgresql.Driver");
 
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/renta_de_vehiculos", "postgres", "kevin");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/renta_de_vehiculos", "postgres", "postgres123");
             if (connection != null) {
 
             }
@@ -145,11 +145,14 @@ public class LoginUser {
         }
 
         for (int i = 0; i < tipo.size(); i++) {
-            if (tipo.get(i).equals("v")) {
+            System.out.println(tipo.get(i));
+            if ("v".equals(tipo.get(i))) {
                 verify = true;
+                break;
             } else {
                 verify = false;
             }
+            System.out.println(verify);
         }
 
         if (verify == true) {

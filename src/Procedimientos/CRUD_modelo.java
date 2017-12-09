@@ -44,7 +44,7 @@ public class CRUD_modelo {
         try {
             Class.forName("org.postgresql.Driver");
             
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/renta_de_vehiculos", "postgres", "kevin");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/renta_de_vehiculos", "postgres", "postgres123");
             if (connection != null) {
                 
             }

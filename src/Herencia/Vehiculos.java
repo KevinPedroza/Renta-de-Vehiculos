@@ -25,8 +25,9 @@ public class Vehiculos {
     double Precio;
     File Foto;
     String Estado;
+    String url;
 
-    public Vehiculos(String Placa_vehiculo, int Codigo_marca, int Codigo_estilo, int Codigo_modelo, String Transmision_vehiculo, String Año, double Precio, File Foto, String Estado) {
+    public Vehiculos(String Placa_vehiculo, int Codigo_marca, int Codigo_estilo, int Codigo_modelo, String Transmision_vehiculo, String Año, double Precio, File Foto, String Estado, String url) {
         this.Placa_vehiculo = Placa_vehiculo;
         this.Codigo_marca = Codigo_marca;
         this.Codigo_estilo = Codigo_estilo;
@@ -36,9 +37,18 @@ public class Vehiculos {
         this.Precio = Precio;
         this.Foto = Foto;
         this.Estado = Estado;
+        this.url = url;
     }
 
     public Vehiculos() {
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getPlaca_vehiculo() {

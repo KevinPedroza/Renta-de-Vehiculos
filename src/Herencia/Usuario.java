@@ -13,16 +13,17 @@ import java.sql.SQLException;
  */
 public class Usuario {
 
-    private String cedula, nombre, telefono, direccion, contrasena, tipo;
+    private String cedula, nombre, telefono, direccion, contrasena, tipo, url;
     private FileInputStream foto;
 
-    public Usuario(String cedula, String nombre, String telefono, String direccion, String contrasena, String tipo, FileInputStream foto) {
+    public Usuario(String cedula, String nombre, String telefono, String direccion, String contrasena, String tipo, FileInputStream foto, String url) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
         this.contrasena = contrasena;
         this.tipo = tipo;
+        this.url = url;
         this.foto = foto;
     }
 
@@ -37,7 +38,7 @@ public class Usuario {
             return;
         }
         String url = "jdbc:postgresql://localhost:5432/renta_de_vehiculos";
-        String password = "kevin";
+        String password = "postgres123";
         try {
             Class.forName("org.postgresql.Driver");
             conexion = DriverManager.getConnection(url, "postgres", password);
@@ -51,7 +52,7 @@ public class Usuario {
     public boolean registrar() {
         conectar();
         try {
-            String sql = "INSERT INTO usuario(cedula, nombre, telefono, direccion, foto, contrasena, tipo) VALUES (?, ?, ?, ?, ?, MD5(?), ?)";
+            String sql = "INSERT INTO usuario(cedula, nombre, telefono, direccion, foto, contrasena, tipo, url_foto_user) VALUES (?, ?, ?, ?, ?, MD5(?), ?, ?)";
             PreparedStatement ps = conexion.prepareStatement(sql);
             ps.setString(1, cedula);
             ps.setString(2, nombre);
@@ -60,6 +61,7 @@ public class Usuario {
             ps.setBinaryStream(5, foto);
             ps.setString(6, contrasena);
             ps.setString(7, tipo);
+            ps.setString(8, url);
             int res = ps.executeUpdate();
 
             return res == 1;
@@ -107,6 +109,14 @@ public class Usuario {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getTipo() {

@@ -53,9 +53,19 @@ public class Reportes_interfaz extends javax.swing.JDialog {
 
         jButton2.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         jButton2.setText("Reporte 2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Sitka Text", 0, 14)); // NOI18N
         jButton3.setText("Reporte 3");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         Atras.setFont(new java.awt.Font("Sitka Text", 3, 12)); // NOI18N
         Atras.setText("Atrás");
@@ -132,6 +142,20 @@ public class Reportes_interfaz extends javax.swing.JDialog {
         this.dispose();
         instancias.reporte1();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+        Reporte_2 r = new Reporte_2(null, true);
+        r.pack();
+        r.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        dispose();
+        Reporte_3 r = new Reporte_3(null, true);
+        r.pack();
+        r.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

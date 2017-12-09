@@ -160,7 +160,7 @@ public class Insertar_vehiculo extends javax.swing.JDialog {
         jLabel6.setText("Transmisión");
 
         Transmision.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
-        Transmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Aútomatico" }));
+        Transmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Automático" }));
 
         jButton1.setFont(new java.awt.Font("Sitka Text", 3, 12)); // NOI18N
         jButton1.setText("Atrás");

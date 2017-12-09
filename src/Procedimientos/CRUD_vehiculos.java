@@ -89,7 +89,7 @@ public class CRUD_vehiculos {
         try {
             Class.forName("org.postgresql.Driver");
 
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/renta_de_vehiculos", "postgres", "kevin");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/renta_de_vehiculos", "postgres", "postgres123");
             if (connection != null) {
 
             }
@@ -253,10 +253,11 @@ public class CRUD_vehiculos {
             String año = Año.getText();
             String precio = Precio.getText();
             String estado = Estado.getSelectedItem().toString();
-            Vehiculos vehiculo = new Vehiculos(placa, marca.getCodigo_marca(), estilo.getCodigo_estilo(), modelo.getCodigo_modelo(), transmision, año, Double.parseDouble(precio), Imagen, estado);
+            String url = Imagen.getAbsolutePath();
+            Vehiculos vehiculo = new Vehiculos(placa, marca.getCodigo_marca(), estilo.getCodigo_estilo(), modelo.getCodigo_modelo(), transmision, año, Double.parseDouble(precio), Imagen, estado, url);
             FileInputStream foto = new FileInputStream(vehiculo.getFoto());
 
-            String sql = "INSERT INTO vehiculo(placa, id_marca, id_modelo, id_estilo, transmision, ano, precio, foto, estado) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO vehiculo(placa, id_marca, id_modelo, id_estilo, transmision, ano, precio, foto, estado, url_foto_vehi) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(sql);
 
             ps.setString(1, vehiculo.getPlaca_vehiculo());
@@ -268,6 +269,7 @@ public class CRUD_vehiculos {
             ps.setDouble(7, vehiculo.getPrecio());
             ps.setBinaryStream(8, foto, (int) vehiculo.getFoto().length());
             ps.setString(9, vehiculo.getEstado());
+            ps.setString(10, vehiculo.getUrl());
             int z = ps.executeUpdate();
             if (z == 1) {
                 JOptionPane.showMessageDialog(null, "Se agregó el Vehiculo de manera exitosa");
@@ -546,7 +548,7 @@ public class CRUD_vehiculos {
                     try {
 
                         s = connection.createStatement();
-                        int z = s.executeUpdate("DELETE FROM vhiculo WHERE placa = '" + strResultado + "'");
+                        int z = s.executeUpdate("DELETE FROM vehiculo WHERE placa = '" + strResultado + "'");
                         if (z == 1) {
                             JOptionPane.showMessageDialog(null, "Se eliminó el registro de manera exitosa");
                             cargarTablaEliminar();
@@ -677,7 +679,8 @@ public class CRUD_vehiculos {
                 String año = Año_modi.getText();
                 String precio = Precio_modi.getText();
                 String estado = Estado_modi.getSelectedItem().toString();
-                Vehiculos vehiculo = new Vehiculos(placa, marca.getCodigo_marca(), estilo.getCodigo_estilo(), modelo.getCodigo_modelo(), transmision, año, Double.parseDouble(precio), Imagen, estado);
+                String url = Imagen.getAbsolutePath();
+                Vehiculos vehiculo = new Vehiculos(placa, marca.getCodigo_marca(), estilo.getCodigo_estilo(), modelo.getCodigo_modelo(), transmision, año, Double.parseDouble(precio), Imagen, estado, url);
                 
 
                 String sql = "UPDATE vehiculo SET placa = ? , id_marca = ? , id_modelo = ? , id_estilo = ? , transmision = ?, ano = ?, precio = ?, estado = ?  WHERE placa = '" + opci + "'";
@@ -715,10 +718,11 @@ public class CRUD_vehiculos {
                 String año = Año_modi.getText();
                 String precio = Precio_modi.getText();
                 String estado = Estado_modi.getSelectedItem().toString();
-                Vehiculos vehiculo = new Vehiculos(placa, marca.getCodigo_marca(), estilo.getCodigo_estilo(), modelo.getCodigo_modelo(), transmision, año, Double.parseDouble(precio), Imagen, estado);
+                String url = Imagen.getAbsolutePath();
+                Vehiculos vehiculo = new Vehiculos(placa, marca.getCodigo_marca(), estilo.getCodigo_estilo(), modelo.getCodigo_modelo(), transmision, año, Double.parseDouble(precio), Imagen, estado, url);
                 FileInputStream foto = new FileInputStream(vehiculo.getFoto());
 
-                String sql = "UPDATE vehiculo SET placa = ? , id_marca = ? , id_modelo = ? , id_estilo = ? , transmision = ?, ano = ?, precio = ?, foto = ?, estado = ?  WHERE placa = '" + opci + "'";
+                String sql = "UPDATE vehiculo SET placa = ? , id_marca = ? , id_modelo = ? , id_estilo = ? , transmision = ?, ano = ?, precio = ?, foto = ?, estado = ?, url_foto_vehi = ? WHERE placa = '" + opci + "'";
                 PreparedStatement ps = connection.prepareStatement(sql);
 
                 ps.setString(1, vehiculo.getPlaca_vehiculo());
@@ -730,6 +734,7 @@ public class CRUD_vehiculos {
                 ps.setDouble(7, vehiculo.getPrecio());
                 ps.setBinaryStream(8, foto, (int) vehiculo.getFoto().length());
                 ps.setString(9, vehiculo.getEstado());
+                ps.setString(10, vehiculo.getUrl());
                 int z = ps.executeUpdate();
                 if (z == 1) {
                     JOptionPane.showMessageDialog(null, "Se Modificó el Vehiculo de manera exitosa");

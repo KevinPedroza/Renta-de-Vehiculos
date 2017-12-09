@@ -354,6 +354,11 @@ public class RentarVehiculo extends javax.swing.JFrame {
 
         btnatras.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
         btnatras.setText("Atrás");
+        btnatras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnatrasActionPerformed(evt);
+            }
+        });
 
         btnrentar.setFont(new java.awt.Font("Sitka Text", 1, 12)); // NOI18N
         btnrentar.setText("Rentar");
@@ -480,6 +485,12 @@ public class RentarVehiculo extends javax.swing.JFrame {
         }
         actualizarPrecioTotal();
     }//GEN-LAST:event_chkSillaItemStateChanged
+
+    private void btnatrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnatrasActionPerformed
+        BuscarVehiculo b = new BuscarVehiculo(usuario);
+        b.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnatrasActionPerformed
 
     /**
      * @param args the command line arguments

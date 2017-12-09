@@ -162,7 +162,7 @@ public class Modificar_vehiculo extends javax.swing.JDialog {
         Label_trans.setText("Transmisión");
 
         Transmision_modi.setFont(new java.awt.Font("Sitka Text", 0, 12)); // NOI18N
-        Transmision_modi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Autómatico" }));
+        Transmision_modi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Automático" }));
         Transmision_modi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Transmision_modiActionPerformed(evt);

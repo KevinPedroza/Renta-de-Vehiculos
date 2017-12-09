@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import Herencia.Usuario;
 import Procedimientos.Instancias;
 import Procedimientos.LoginUser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -189,6 +190,8 @@ public class Registro extends javax.swing.JDialog {
     private void btnfotoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnfotoMouseClicked
         lblfoto.setIcon(null);
         JFileChooser f = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de imagen jpg, gif o png", "jpg", "gif", "png");
+        f.setFileFilter(filter);
         f.setFileSelectionMode(JFileChooser.FILES_ONLY);
         f.setDialogTitle("Seleccionar foto del usuario");
         f.setCurrentDirectory(new File("C:/Users/DELL/Pictures"));
@@ -196,6 +199,7 @@ public class Registro extends javax.swing.JDialog {
         if (res == JFileChooser.APPROVE_OPTION) {
             try {
                 usuario.setFoto(new FileInputStream(f.getSelectedFile()));
+                usuario.setUrl(f.getSelectedFile().getAbsolutePath());
                 Image foto = ImageIO.read(f.getSelectedFile()).getScaledInstance(lblfoto.getWidth(), lblfoto.getHeight(), Image.SCALE_DEFAULT);
                 lblfoto.setIcon(new ImageIcon(foto));
                 lblfoto.updateUI();

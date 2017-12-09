@@ -134,7 +134,7 @@ public class Rentar {
 
     @Override
     public String toString() {
-        return "'" + placa + "', '" + cedula + "', '" + nombre_usuario + "', '" + oficinaret + "', '" + oficinadev + "', '" + fecharet + "', '" + fechadev +  "', " + precio_total;
+        return "'" + placa + "', '" + cedula + "', '" + nombre_usuario + "', '" + oficinaret + "', '" + oficinadev + "', '" + fecharet + "', '" + fechadev + "', '" + horaret + "', '" + horadev + "', " + precio_total;
     }
 
     public String fechaDeHoy() {
@@ -162,7 +162,8 @@ public class Rentar {
     
     public boolean registrar() {
         Conexion_busqueda c = new Conexion_busqueda();
-        boolean res = c.insertar("INSERT INTO alquiler (placa, cedula, nombre_usuario, oficina_retiro, oficina_devolucion, fecha_hora_retiro, fecha_hora_devolucion, precio)"
+        System.out.println(toString());
+        boolean res = c.insertar("INSERT INTO alquiler (placa, cedula, nombre_usuario, oficina_retiro, oficina_devolucion, fecha_hora_retiro, fecha_hora_devolucion, hora_ret, hora_dev, precio)"
                 + "VALUES (" + toString() + ")");
         if (res) {
             boolean update = c.update("UPDATE vehiculo SET estado='Ocupado' WHERE placa='" + placa + "'");

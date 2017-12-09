@@ -26,14 +26,14 @@ import java.util.ArrayList;
  *
  * @author Kevin
  */
-public class Reportes {
+public class Reporte1_procedimientos {
 
     private Connection connection = null;
     private ResultSet rs = null;
     private Statement s = null;
 
     private Font fuentebold = new Font(Font.FontFamily.COURIER, 10, Font.BOLD);
-    private Font fuentenormal = new Font(Font.FontFamily.COURIER, 10, Font.NORMAL);
+    private Font fuentenormal = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.NORMAL);
     private Font fuenteitalic = new Font(Font.FontFamily.COURIER, 10, Font.ITALIC);
 
     public void Conexion_Base_datos() {
@@ -44,7 +44,7 @@ public class Reportes {
         try {
             Class.forName("org.postgresql.Driver");
 
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/renta_de_vehiculos", "postgres", "postgres123");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/renta_de_vehiculos", "postgres", "kevin");
             if (connection != null) {
 
             }
@@ -85,20 +85,18 @@ public class Reportes {
         } catch (Exception e) {
             System.out.println("Error de conexión" + e);
         }
-        if (placa.size() == 0) {
-            info2 = "No hay conincidencias con este rango de fechas";
-        } else {
-            for (int i = 0; i < nombre.size(); i++) {
-                Info.add("Placa Vehiculo: " + placa.get(i) + ", Cédula Cliente: " + cedula.get(i) + ", Nombre Cliente: " + nombre.get(i) + "\nFecha Retiro: " + fecha_alqui.get(i)
-                        + ", Fecha Devolución: " + fecha_devo.get(i) + ".\n \n");
-                info2 += Info.get(i);
-            }
+        for (int i = 0; i < nombre.size(); i++) {
+            Info.add("Placa Vehiculo: " + placa.get(i) + ", Cédula Cliente: " + cedula.get(i) + ", Nombre Cliente: " + nombre.get(i) + "\nFecha Retiro: " + fecha_alqui.get(i)
+                    + ", Fecha Devolución: " + fecha_devo.get(i) + ".\n \n");
+            info2 += Info.get(i);
         }
+
         return info2;
     }
 
     public void generar_PDF_Reporte1(String header, String info, String footer,
             String salida) {
+        
         try {
             Document document = new Document(PageSize.A4, 36, 36, 36, 36);
             PdfWriter pw = PdfWriter.getInstance(document, new FileOutputStream(salida));
@@ -132,7 +130,7 @@ public class Reportes {
     public Paragraph getInfo(String texto) {
         Paragraph p = new Paragraph();
         Chunk c = new Chunk();
-        p.setAlignment(Element.ALIGN_CENTER);
+        p.setAlignment(Element.ALIGN_JUSTIFIED);
         c.append(texto);
         c.setFont(fuentenormal);
         p.add(c);
