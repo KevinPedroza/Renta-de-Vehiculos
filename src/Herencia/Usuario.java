@@ -8,8 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
- * @author Carol
+this class will have the getters and setters. for us to use them later to save the information 
  */
 public class Usuario {
 

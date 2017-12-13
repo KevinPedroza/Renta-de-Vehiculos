@@ -1,5 +1,5 @@
 package Procedimientos;
-
+//this method will have some herencia and methods that we use to rent a car
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

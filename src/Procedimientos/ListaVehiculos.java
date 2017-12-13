@@ -1,5 +1,5 @@
 package Procedimientos;
-
+//this class will modify the jlist on buscavehiculos
 import Herencia.Vehiculos;
 import java.awt.Component;
 import java.awt.Image;

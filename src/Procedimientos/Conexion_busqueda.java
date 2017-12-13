@@ -1,5 +1,5 @@
 package Procedimientos;
-
+//this will some conections to the data base 
 import Herencia.Vehiculos;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
